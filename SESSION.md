@@ -43,9 +43,11 @@ arc-raiders-quest-planner/
 | **GitHub** | Phalck | Repo created and pushed |
 | **Vercel** | mattiasfalck | Site deployed manually |
 
-**IMPORTANT**: The Vercel account (mattiasfalck) and GitHub account (Phalck) are NOT linked. This means `git push` does NOT auto-deploy. To deploy after changes, follow the manual deploy steps below.
+**IMPORTANT**: The Vercel account (mattiasfalck) and GitHub account (Phalck) are NOT linked. This means `git push` does NOT auto-deploy. See "How to Deploy" below.
 
 ## How to Deploy After Code Changes
+
+Every time you push to GitHub, you must also deploy to Vercel manually.
 
 ### 1. Push to GitHub
 ```bash
@@ -61,6 +63,14 @@ vercel --prod
 ```
 
 You may need to authenticate Vercel again if the session expired. The CLI will show a device code URL.
+
+### 3. Verify
+Visit https://arc-raiders-quest-planner.vercel.app to confirm the update is live.
+
+**Shortcut** (combine both steps):
+```bash
+git add -A && git commit -m "msg" && git push && vercel --prod
+```
 
 ## What the App Does
 
