@@ -95,9 +95,22 @@ This regenerates `data/quests.json`. Then commit and redeploy.
 
 ## Next Steps / Potential Improvements
 
+### Server-side Features
+- **User accounts & cloud progress** — Add a backend (Supabase/Firebase/custom API) so users can register, log in, and sync quest completion across devices. Requires auth, a progress table, and save/load endpoints.
+
+### Filtering & Display
+- **Filter by map/location** — Location dropdown alongside the Trader filter. Extracts unique values from the `location` field in quests.json.
+
+### Wiki Integration
+- **Auto wiki scraper** — Schedule `node scraper/scrape.js` via GitHub Actions cron to detect quest changes on the wiki. Add diff check against committed `quests.json` and auto-create a PR when data changes.
+
+### Print Improvements
+- **"Next 5" ticket** — On any path mode, scan forward from the last completed quest and print the next 5 uncompleted missions as a tick-box checklist with required items. Useful for session planning.
+- Add collapsible required items/rewards in the full print view
+
+### UX Polish
+- "Reset all progress" button
+- Progress statistics counter (e.g., "12/100 completed")
+- Better mobile touch handling for the vis-network tree
+- Manual node positioning to match the wiki's quest tree image
 - Connect GitHub ↔ Vercel for auto-deploy on push
-- Add collapsible quest details in the print view for required items
-- Add a "reset all progress" button
-- Add progress statistics (X/100 completed, etc.)
-- Improve mobile touch interactions for the vis-network tree
-- The quest tree could be manually positioned to match the wiki's quest tree image for a cleaner look
