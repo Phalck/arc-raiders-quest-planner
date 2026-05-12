@@ -1,0 +1,3539 @@
+{
+  "meta": {
+    "total": 100,
+    "generated": "2026-05-12T22:09:07.077Z",
+    "source": "https://arcraiders.wiki"
+  },
+  "quests": [
+    {
+      "id": "picking_up_the_pieces",
+      "name": "Picking Up The Pieces",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Rattler III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Medium Ammo",
+          "count": 80,
+          "type": "item"
+        }
+      ],
+      "previous": [],
+      "next": [
+        "clearer_skies",
+        "trash_into_treasure"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "trash_into_treasure",
+      "name": "Trash Into Treasure",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Wires",
+          "count": 1
+        },
+        {
+          "name": "Battery",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Tactical Mk. 1",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Adrenaline Shot",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "picking_up_the_pieces"
+      ],
+      "next": [
+        "off_the_radar"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "clearer_skies",
+      "name": "Clearer Skies",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "ARC Alloy",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Black (Hiker Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Sterilized Bandage",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Light Shield",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "picking_up_the_pieces"
+      ],
+      "next": [
+        "off_the_radar"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "off_the_radar",
+      "name": "Off The Radar",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Black White (Origin Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Defibrillator",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "clearer_skies",
+        "trash_into_treasure"
+      ],
+      "next": [
+        "a_bad_feeling",
+        "a_first_foothold",
+        "battening_down",
+        "shoring_up_defenses"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "hatch_repairs",
+      "name": "Hatch Repairs",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Raider Hatch Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Binoculars",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_bad_feeling"
+      ],
+      "next": [
+        "down_to_earth"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "down_to_earth",
+      "name": "Down To Earth",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Combat Mk. 1",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Medium Shield",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "hatch_repairs"
+      ],
+      "next": [
+        "the_trifecta"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_trifecta",
+      "name": "The Trifecta",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Wasp Driver",
+          "count": 1
+        },
+        {
+          "name": "Hornet Driver",
+          "count": 1
+        },
+        {
+          "name": "Snitch Scanner",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Origin Outfit (Orange Camo Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Raider Hatch Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Defibrillator",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Dam Control Tower Key",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "down_to_earth"
+      ],
+      "next": [
+        "dormant_barons",
+        "dust_on_the_wires"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "dormant_barons",
+      "name": "Dormant Barons",
+      "trader": "shani",
+      "location": "Dam Battlegrounds; Spaceport; The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Door Blocker",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Li'l Smoke Grenade",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "greasing_her_palms",
+        "the_trifecta"
+      ],
+      "next": [
+        "mixed_signals",
+        "what_we_left_behind",
+        "clamoring_for_attention"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_lay_of_the_land",
+      "name": "A Lay Of The Land",
+      "trader": "shani",
+      "location": "Spaceport",
+      "requiredItems": [
+        {
+          "name": "LiDAR Scanner",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Dam Testing Annex Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Zipline",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Smoke Grenade",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_reveal_in_ruins"
+      ],
+      "next": [
+        "eyes_in_the_sky"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "eyes_in_the_sky",
+      "name": "Eyes In The Sky",
+      "trader": "shani",
+      "location": "Dam Battlegrounds; Buried City; Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Tagging Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Vita Spray",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Yellow Light Stick",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_lay_of_the_land"
+      ],
+      "next": [
+        "after_rain_comes",
+        "a_balanced_harvest",
+        "back_on_top"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "our_presence_up_there",
+      "name": "Our Presence up There",
+      "trader": "shani",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Buried City Town Hall Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Raider Hatch Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Jolt Mine",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "back_on_top"
+      ],
+      "next": [
+        "lost_in_transmission"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "lost_in_transmission",
+      "name": "Lost In Transmission",
+      "trader": "shani",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Snap Hook",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "our_presence_up_there"
+      ],
+      "next": [
+        "communication_hideout"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "communication_hideout",
+      "name": "Communication Hideout",
+      "trader": "shani",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Aviator Outfit (Crimson Racer Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Anvil III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Ammo",
+          "count": 40,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "lost_in_transmission"
+      ],
+      "next": [
+        "into_the_fray"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "into_the_fray",
+      "name": "Into The Fray",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Leaper Pulse Unit",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Grey Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Backpack Charm (Burger Boy)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Vulcano III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Shotgun Ammo",
+          "count": 40,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "communication_hideout",
+        "water_troubles"
+      ],
+      "next": [
+        "paving_the_way",
+        "combat_recon"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "deciphering_the_data",
+      "name": "Deciphering The Data",
+      "trader": "shani",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Defibrillator",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Trailblazer",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "paving_the_way"
+      ],
+      "next": [
+        "groundbreaking"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "dust_on_the_wires",
+      "name": "Dust On The Wires",
+      "trader": "shani",
+      "location": "Spaceport",
+      "requiredItems": [
+        {
+          "name": "Scout Patrol Note",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Backpack Charm (Fax Machine)",
+          "count": 1,
+          "type": "cosmetic"
+        }
+      ],
+      "previous": [
+        "the_trifecta"
+      ],
+      "next": [
+        "waking_the_grid",
+        "fragmented_logs"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_dead_end",
+      "name": "A Dead End",
+      "trader": "shani",
+      "location": "The Blue Gate",
+      "requiredItems": [
+        {
+          "name": "Dusty Film Reel",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Patchwork (Warden Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Coins",
+          "count": 2000,
+          "type": "coins"
+        }
+      ],
+      "previous": [
+        "groundbreaking"
+      ],
+      "next": [
+        "a_rising_tide",
+        "fragmented_logs"
+      ],
+      "coins": 2000,
+      "blueprints": []
+    },
+    {
+      "id": "fragmented_logs",
+      "name": "Fragmented Logs",
+      "trader": "shani",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Electrical Components",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Showstopper",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Trailblazer",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_dead_end",
+        "dust_on_the_wires"
+      ],
+      "next": [
+        "furtive_meetings"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "furtive_meetings",
+      "name": "Furtive Meetings",
+      "trader": "shani",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Secret Meeting Info",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Aphelion",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Energy Clip",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "fragmented_logs"
+      ],
+      "next": [
+        "last_entry"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "with_a_trace",
+      "name": "With A Trace",
+      "trader": "shani",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Looting Mk. 2",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Medium Shield",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "reduced_to_rubble"
+      ],
+      "next": [
+        "armored_transports",
+        "the_clean_dream"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "cold_storage",
+      "name": "Cold Storage",
+      "trader": "shani",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Old World Books",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Gas Mine",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Raider Hatch Key",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "in_my_image"
+      ],
+      "next": [
+        "snap_and_salvage"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "last_entry",
+      "name": "Last Entry",
+      "trader": "shani",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Official Shutdown Documentation",
+          "count": 1
+        },
+        {
+          "name": "Seed Vault Box Key",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Yellow Light Stick",
+          "count": 1,
+          "type": "blueprint"
+        }
+      ],
+      "previous": [
+        "furtive_meetings"
+      ],
+      "next": [
+        "line_in_the_sand"
+      ],
+      "coins": 0,
+      "blueprints": [
+        "Yellow Light Stick"
+      ]
+    },
+    {
+      "id": "combat_recon",
+      "name": "Combat Recon",
+      "trader": "shani",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Red Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Firecracker",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Fireworks Box",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "into_the_fray",
+        "out_of_the_shadows"
+      ],
+      "next": [
+        "bombing_run"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_toxic_trail",
+      "name": "A Toxic Trail",
+      "trader": "shani",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Tactical Mk. 2",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Zipline",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Pulse Mine",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Gas Mine",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "life_of_a_pharmacist"
+      ],
+      "next": [
+        "the_stench_of_corruption"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "with_a_view",
+      "name": "With A View",
+      "trader": "shani",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Rotary Encoder",
+          "count": 1
+        },
+        {
+          "name": "Ion Sputter",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Steel Spring",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Wires",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Tactical Mk. 2",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "snap_and_salvage"
+      ],
+      "next": [
+        "movie_night",
+        "stable_housing"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "clamoring_for_attention",
+      "name": "Clamoring for Attention",
+      "trader": "shani",
+      "location": "The Blue Gate",
+      "requiredItems": [
+        {
+          "name": "Wires",
+          "count": 1
+        },
+        {
+          "name": "Battery",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Lure Grenade",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Noisemaker",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Tagging Grenade",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "dormant_barons"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "mixed_signals",
+      "name": "Mixed Signals",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Surveyor Vault",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Photoelectric Cloak",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Raider Hatch Key",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "dormant_barons"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "waking_the_grid",
+      "name": "Waking the Grid",
+      "trader": "shani",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Tactical Mk. 3 (Revival)",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Vita Shot",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Surge Shield Recharger",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "dust_on_the_wires"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_prime_specimen",
+      "name": "A Prime Specimen",
+      "trader": "shani",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Patrol Car Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Door Blocker",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "the_clean_dream"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "out_of_the_shadows",
+      "name": "Out Of The Shadows",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Rocketeer Driver",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Surge Shield Recharger",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Wolfpack",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_symbol_of_unification",
+        "sparks_fly"
+      ],
+      "next": [
+        "combat_recon"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "reduced_to_rubble",
+      "name": "Reduced to Rubble",
+      "trader": "shani",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Zipline",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Barricade Kit",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Door Blocker",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_first_foothold"
+      ],
+      "next": [
+        "with_a_trace"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "bombing_run",
+      "name": "Bombing Run",
+      "trader": "shani",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Finger Gun Single Shot Emote",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Coins",
+          "count": 30,
+          "type": "tokens"
+        }
+      ],
+      "previous": [
+        "combat_recon"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_stench_of_corruption",
+      "name": "The Stench Of Corruption",
+      "trader": "shani",
+      "location": "Spaceport",
+      "requiredItems": [
+        {
+          "name": "Flushing Terminal Key",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Warden Outfit (Blue Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Air Freshener",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Dam Staff Room Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Noisemaker",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_toxic_trail"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_bad_feeling",
+      "name": "A Bad Feeling",
+      "trader": "celeste",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Metal Parts",
+          "count": 10,
+          "type": "item"
+        },
+        {
+          "name": "Steel Spring",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Duct Tape",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "off_the_radar"
+      ],
+      "next": [
+        "hatch_repairs",
+        "the_right_tool",
+        "safe_passage",
+        "in_my_image"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "greasing_her_palms",
+      "name": "Greasing Her Palms",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds; Buried City; Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Lure Grenade",
+          "count": 1,
+          "type": "blueprint"
+        },
+        {
+          "name": "Speaker Component",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Electrical Components",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_better_use"
+      ],
+      "next": [
+        "doctors_orders",
+        "dormant_barons"
+      ],
+      "coins": 0,
+      "blueprints": [
+        "Lure Grenade"
+      ]
+    },
+    {
+      "id": "straight_record",
+      "name": "Straight Record",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Medium Gun Parts",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Advanced Mechanical Components",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "broken_monument"
+      ],
+      "next": [
+        "keeping_the_memory"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "keeping_the_memory",
+      "name": "Keeping The Memory",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Simple Gun Parts",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Duct Tape",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Magnet",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "straight_record"
+      ],
+      "next": [
+        "echoes_of_victory_ridge"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "echoes_of_victory_ridge",
+      "name": "Echoes Of Victory Ridge",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [
+        {
+          "name": "Major Aiva's Patch",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Crude Explosives",
+          "count": 6,
+          "type": "item"
+        },
+        {
+          "name": "Processor",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Music Box",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "keeping_the_memory"
+      ],
+      "next": [
+        "unexpected_initiative"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_balanced_harvest",
+      "name": "A Balanced Harvest",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Advanced Mechanical Components",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Medium Gun Parts",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Steel Spring",
+          "count": 10,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "eyes_in_the_sky"
+      ],
+      "next": [
+        "untended_garden"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "untended_garden",
+      "name": "Untended Garden",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Advanced Mechanical Components",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Gun Parts",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Canister",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_balanced_harvest"
+      ],
+      "next": [
+        "the_root_of_the_matter"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_symbol_of_unification",
+      "name": "A Symbol Of Unification",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [
+        {
+          "name": "Raider Flag",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Aviator Outfit (Dusted Cream Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Mod Components",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Duct Tape",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "unexpected_initiative"
+      ],
+      "next": [
+        "celestes_journals",
+        "out_of_the_shadows",
+        "the_majors_footlocker"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "after_rain_comes",
+      "name": "After Rain Comes",
+      "trader": "celeste",
+      "location": "Buried City",
+      "requiredItems": [
+        {
+          "name": "Wires",
+          "count": 1
+        },
+        {
+          "name": "Battery",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Blue Light Stick",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Antiseptic",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Durable Cloth",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "eyes_in_the_sky"
+      ],
+      "next": [
+        "water_troubles"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_root_of_the_matter",
+      "name": "The Root Of The Matter",
+      "trader": "celeste",
+      "location": "Buried City",
+      "requiredItems": [
+        {
+          "name": "Experimental Seed Sample",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Backpack Charm (Succulent)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Coins",
+          "count": 1000,
+          "type": "coins"
+        }
+      ],
+      "previous": [
+        "untended_garden"
+      ],
+      "next": [
+        "water_troubles"
+      ],
+      "coins": 1000,
+      "blueprints": []
+    },
+    {
+      "id": "celestes_journals",
+      "name": "Celeste's Journals",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [
+        {
+          "name": "Celeste's Journal",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Magnetic Accelerator",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Gun Parts",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Exodus Modules",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_symbol_of_unification"
+      ],
+      "next": [
+        "back_on_top"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "water_troubles",
+      "name": "Water Troubles",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Mechanical Components",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Simple Gun Parts",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Steel Spring",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "the_root_of_the_matter",
+        "after_rain_comes"
+      ],
+      "next": [
+        "source_of_the_contamination",
+        "into_the_fray"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "source_of_the_contamination",
+      "name": "Source Of The Contamination",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Steel Spring",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Duct Tape",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Mod Components",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "water_troubles"
+      ],
+      "next": [
+        "switching_the_supply"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "switching_the_supply",
+      "name": "Switching The Supply",
+      "trader": "celeste",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Blue Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Spaceport Trench Tower Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Synthesized Fuel",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "source_of_the_contamination"
+      ],
+      "next": [
+        "a_warm_place_to_rest"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "power_out",
+      "name": "Power Out",
+      "trader": "celeste",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Bag Variant)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Wires",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Explosive Compound",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Oil",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "prescriptions_of_the_past"
+      ],
+      "next": [
+        "flickering_threat"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "flickering_threat",
+      "name": "Flickering Threat",
+      "trader": "celeste",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Helmet Variant)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Medium Gun Parts",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Advanced Mechanical Components",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "power_out"
+      ],
+      "next": [
+        "bees"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "bees",
+      "name": "Bees!",
+      "trader": "celeste",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Advanced Electrical Components",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Sensors",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "flickering_threat"
+      ],
+      "next": [
+        "espresso"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "tribute_to_toledo",
+      "name": "Tribute To Toledo",
+      "trader": "celeste",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Power Rod",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Magnet",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Advanced Mechanical Components",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Synthesized Fuel",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "life_of_a_pharmacist"
+      ],
+      "next": [
+        "digging_up_dirt"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "digging_up_dirt",
+      "name": "Digging Up Dirt",
+      "trader": "celeste",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Advanced Electrical Components",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Speaker Component",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "tribute_to_toledo"
+      ],
+      "next": [
+        "turnabout",
+        "building_a_library"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "worth_your_salt",
+      "name": "Worth Your Salt",
+      "trader": "celeste",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Vita Spray",
+          "count": 1,
+          "type": "blueprint"
+        }
+      ],
+      "previous": [
+        "groundbreaking"
+      ],
+      "next": [
+        "on_deaf_ears"
+      ],
+      "coins": 0,
+      "blueprints": [
+        "Vita Spray"
+      ]
+    },
+    {
+      "id": "line_in_the_sand",
+      "name": "Line in the Sand",
+      "trader": "celeste",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Exodus Modules",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Magnetic Accelerator",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Magnetron",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "last_entry"
+      ],
+      "next": [
+        "safe_harbor"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_rising_tide",
+      "name": "A Rising Tide",
+      "trader": "celeste",
+      "location": "Buried City; Dam Battlegrounds",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Anvil II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Anvil Splitter",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Extended Barrel",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Ammo",
+          "count": 40,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_dead_end"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "turnabout",
+      "name": "Turnabout",
+      "trader": "celeste",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Heavy Gun Parts",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Medium Gun Parts",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "digging_up_dirt"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "keeping_an_eye_out",
+      "name": "Keeping an Eye Out",
+      "trader": "celeste",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Pulse Mine",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Flame Spray",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "the_clean_dream"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_wrench_in_the_works",
+      "name": "A Wrench in the Works",
+      "trader": "celeste",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Yellow Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Mechanical Components",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Mod Components",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "safe_harbor"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_right_tool",
+      "name": "The Right Tool",
+      "trader": "tian_wen",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Stitcher II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Extended Light Mag I",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_bad_feeling"
+      ],
+      "next": [
+        "a_better_use"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_better_use",
+      "name": "A Better Use",
+      "trader": "tian_wen",
+      "location": "Dam Battlegrounds; Buried City; Spaceport; The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Extended Light Magazine I",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Stable Stock I",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Muzzle Brake II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "the_right_tool"
+      ],
+      "next": [
+        "greasing_her_palms"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "what_we_left_behind",
+      "name": "What We Left Behind",
+      "trader": "tian_wen",
+      "location": "Dam Battlegrounds; Buried City; Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Muzzle Brake II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Vertical Grip II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Stable Stock II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "dormant_barons"
+      ],
+      "next": [
+        "broken_monument"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "broken_monument",
+      "name": "Broken Monument",
+      "trader": "tian_wen",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [
+        {
+          "name": "First Wave Tape",
+          "count": 1
+        },
+        {
+          "name": "First Wave Compass",
+          "count": 1
+        },
+        {
+          "name": "First Wave Rations",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Arpeggio I",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Compensator II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Medium Ammo",
+          "count": 80,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "what_we_left_behind"
+      ],
+      "next": [
+        "marked_for_death",
+        "straight_record"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "marked_for_death",
+      "name": "Marked For Death",
+      "trader": "tian_wen",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Shotgun Choke II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Angled Grip II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "broken_monument"
+      ],
+      "next": [
+        "market_correction"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "market_correction",
+      "name": "Market Correction",
+      "trader": "tian_wen",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Silencer II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Extended Light Mag II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Compensator I",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "marked_for_death"
+      ],
+      "next": [
+        "eyes_on_the_prize"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "eyes_on_the_prize",
+      "name": "Eyes On The Prize",
+      "trader": "tian_wen",
+      "location": "Buried City",
+      "requiredItems": [
+        {
+          "name": "Wires",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Extended Shotgun Mag II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Extended Medium Mag II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "market_correction"
+      ],
+      "next": [
+        "industrial_espionage"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "industrial_espionage",
+      "name": "Industrial Espionage",
+      "trader": "tian_wen",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Burletta",
+          "count": 1,
+          "type": "blueprint"
+        },
+        {
+          "name": "Mechanical Components",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Simple Gun Parts",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "eyes_on_the_prize"
+      ],
+      "next": [
+        "unexpected_initiative"
+      ],
+      "coins": 0,
+      "blueprints": [
+        "Burletta"
+      ]
+    },
+    {
+      "id": "unexpected_initiative",
+      "name": "Unexpected Initiative",
+      "trader": "tian_wen",
+      "location": "Buried City",
+      "requiredItems": [
+        {
+          "name": "Moisture Meter",
+          "count": 1
+        },
+        {
+          "name": "Nutrient Meter",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Il Toro I",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Shotgun Ammo",
+          "count": 40,
+          "type": "item"
+        },
+        {
+          "name": "Shotgun Choke II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "echoes_of_victory_ridge",
+        "industrial_espionage"
+      ],
+      "next": [
+        "a_symbol_of_unification"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_majors_footlocker",
+      "name": "The Major's Footlocker",
+      "trader": "tian_wen",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [
+        {
+          "name": "Major Aiva's Mementos",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Hullcracker",
+          "count": 1,
+          "type": "blueprint"
+        }
+      ],
+      "previous": [
+        "a_symbol_of_unification"
+      ],
+      "next": [
+        "back_on_top"
+      ],
+      "coins": 0,
+      "blueprints": [
+        "Hullcracker"
+      ]
+    },
+    {
+      "id": "back_on_top",
+      "name": "Back on Top",
+      "trader": "tian_wen",
+      "location": "Dam Battlegrounds; Buried City; Spaceport; The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Renegade I",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Stable Stock III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Medium Ammo",
+          "count": 80,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "celestes_journals",
+        "eyes_in_the_sky",
+        "the_majors_footlocker"
+      ],
+      "next": [
+        "our_presence_up_there"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "snap_and_salvage",
+      "name": "Snap And Salvage",
+      "trader": "tian_wen",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Flow Controller",
+          "count": 1
+        },
+        {
+          "name": "Magnetron",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Burletta III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Silencer II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Extended Light Mag II",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Light Ammo",
+          "count": 100,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "cold_storage"
+      ],
+      "next": [
+        "with_a_view",
+        "on_deaf_ears"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "outstanding_balance",
+      "name": "Outstanding Balance",
+      "trader": "tian_wen",
+      "location": "The Blue Gate",
+      "requiredItems": [
+        {
+          "name": "Dodger's Note",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Aviator Outfit (Gothic Graffiti Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Extended Medium Mag III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Silencer II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "the_clean_dream"
+      ],
+      "next": [
+        "settled_in_full"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "safe_harbor",
+      "name": "Safe Harbor",
+      "trader": "tian_wen",
+      "location": "Riven Tides",
+      "requiredItems": [
+        {
+          "name": "Precision Gimbal",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Surge Coil",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Gun Parts",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Horizontal Grip",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "line_in_the_sand"
+      ],
+      "next": [
+        "a_wrench_in_the_works"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "collision_course",
+      "name": "Collision Course",
+      "trader": "tian_wen",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Comet Igniter",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Canto I",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Extended Medium Mag III",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Muzzle Brake II",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "safe_passage"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "settled_in_full",
+      "name": "Settled in Full",
+      "trader": "tian_wen",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Bastion Cell",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Coins",
+          "count": 30,
+          "type": "tokens"
+        }
+      ],
+      "previous": [
+        "outstanding_balance"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "stable_housing",
+      "name": "Stable Housing",
+      "trader": "tian_wen",
+      "location": "Stella Montis",
+      "requiredItems": [
+        {
+          "name": "Project Heartwood Blueprints",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Seeker Grenade",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Lure Grenade",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Snap Hook",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "with_a_view"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "armored_transports",
+      "name": "Armored Transports",
+      "trader": "tian_wen",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Aviator Outfit (Blue Yellow Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Smoke Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Defibrillator",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_new_type_of_plant",
+        "with_a_trace"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "doctors_orders",
+      "name": "Doctor's Orders",
+      "trader": "lance",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Syringe",
+          "count": 1
+        },
+        {
+          "name": "Antiseptic",
+          "count": 1
+        },
+        {
+          "name": "Durable Cloth",
+          "count": 1
+        },
+        {
+          "name": "Great Mullein",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Adrenaline Shot",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Sterilized Bandage",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Surge Shield Recharger",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "greasing_her_palms"
+      ],
+      "next": [
+        "medical_merchandise"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "medical_merchandise",
+      "name": "Medical Merchandise",
+      "trader": "lance",
+      "location": "Dam Battlegrounds; Buried City; Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Backpack Charm (Banana)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Defibrillator",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Vita Shot",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "doctors_orders"
+      ],
+      "next": [
+        "a_reveal_in_ruins"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_reveal_in_ruins",
+      "name": "A Reveal In Ruins",
+      "trader": "lance",
+      "location": "Buried City",
+      "requiredItems": [
+        {
+          "name": "ESR Analyzer",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Tactical Mk. 3 (Healing)",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Surge Shield Recharger",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "medical_merchandise"
+      ],
+      "next": [
+        "a_lay_of_the_land"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "prescriptions_of_the_past",
+      "name": "Prescriptions Of The Past",
+      "trader": "lance",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Heavy Shield",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Tactical Mk. 3 (Healing)",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Adrenaline Shot",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_warm_place_to_rest"
+      ],
+      "next": [
+        "power_out"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "life_of_a_pharmacist",
+      "name": "Life Of A Pharmacist",
+      "trader": "lance",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Defibrillator",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Surge Shield Recharger",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Sterilized Bandage",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "espresso"
+      ],
+      "next": [
+        "tribute_to_toledo",
+        "a_toxic_trail"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "in_my_image",
+      "name": "In My Image",
+      "trader": "lance",
+      "location": "Stella Montis",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Looting Mk. 2",
+          "count": 2,
+          "type": "item"
+        },
+        {
+          "name": "Green Light Stick",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_bad_feeling"
+      ],
+      "next": [
+        "cold_storage"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "on_deaf_ears",
+      "name": "On Deaf Ears",
+      "trader": "lance",
+      "location": "Stella Montis",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Warden Outfit (Navy Blue Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Lure Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Noisemaker",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Shaker",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "worth_your_salt",
+        "snap_and_salvage"
+      ],
+      "next": [
+        "on_the_map"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_new_type_of_plant",
+      "name": "A New Type Of Plant",
+      "trader": "lance",
+      "location": "Dam Battlegrounds",
+      "requiredItems": [
+        {
+          "name": "Possibly Toxic Plant",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Vita Shot",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Antiseptic",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "building_a_library"
+      ],
+      "next": [
+        "armored_transports"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "on_the_map",
+      "name": "On The Map",
+      "trader": "lance",
+      "location": "Spaceport",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Sterilized Bandage",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Surge Shield Recharger",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Tactical Mk. 3 (Healing)",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "on_deaf_ears"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_warm_place_to_rest",
+      "name": "A Warm Place To Rest",
+      "trader": "apollo",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Radio Renegade Outfit (Goggles Variant)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Noisemaker",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Blue Light Stick",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Rosary",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "switching_the_supply"
+      ],
+      "next": [
+        "prescriptions_of_the_past"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "paving_the_way",
+      "name": "Paving The Way",
+      "trader": "apollo",
+      "location": "Dam Battlegrounds; Buried City; Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Raider Hatch Key",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Seeker Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Advanced Electrical Components",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "into_the_fray"
+      ],
+      "next": [
+        "deciphering_the_data"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "espresso",
+      "name": "Espresso",
+      "trader": "apollo",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Espresso Machine Parts",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Coffee Pot",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Adrenaline Shot",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "bees"
+      ],
+      "next": [
+        "life_of_a_pharmacist"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "safe_passage",
+      "name": "Safe Passage",
+      "trader": "apollo",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Li'l Smoke Grenade",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Shrapnel Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Barricade Kit",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "a_bad_feeling"
+      ],
+      "next": [
+        "what_goes_around",
+        "collision_course"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "what_goes_around",
+      "name": "What Goes Around",
+      "trader": "apollo",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Backpack Charm (Cans)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Blaze Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Noisemaker",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "safe_passage"
+      ],
+      "next": [
+        "sparks_fly"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "groundbreaking",
+      "name": "Groundbreaking",
+      "trader": "apollo",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Warden Outfit (Tangerine Color)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Power Rod",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "deciphering_the_data"
+      ],
+      "next": [
+        "a_dead_end",
+        "worth_your_salt"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_clean_dream",
+      "name": "The Clean Dream",
+      "trader": "apollo",
+      "location": "Spaceport; The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Deadline",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Showstopper",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Fuze Grenade",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "with_a_trace"
+      ],
+      "next": [
+        "a_prime_specimen",
+        "keeping_an_eye_out",
+        "outstanding_balance"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "sparks_fly",
+      "name": "Sparks Fly",
+      "trader": "apollo",
+      "location": "Any",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Trigger 'Nade",
+          "count": 1,
+          "type": "blueprint"
+        },
+        {
+          "name": "Crude Explosives",
+          "count": 4,
+          "type": "item"
+        },
+        {
+          "name": "Processor",
+          "count": 2,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "what_goes_around"
+      ],
+      "next": [
+        "out_of_the_shadows",
+        "the_league"
+      ],
+      "coins": 0,
+      "blueprints": [
+        "Trigger 'Nade"
+      ]
+    },
+    {
+      "id": "building_a_library",
+      "name": "Building A Library",
+      "trader": "apollo",
+      "location": "Buried City",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Explosive Mine",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Jolt Mine",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Fuze Grenade",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "digging_up_dirt"
+      ],
+      "next": [
+        "a_new_type_of_plant"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "a_first_foothold",
+      "name": "A First Foothold",
+      "trader": "apollo",
+      "location": "The Blue Gate",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Shrapnel Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Snap Blast Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Heavy Fuze Grenade",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "off_the_radar"
+      ],
+      "next": [
+        "reduced_to_rubble"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "the_league",
+      "name": "The League",
+      "trader": "apollo",
+      "location": "Dam Battlegrounds; Buried City",
+      "requiredItems": [
+        {
+          "name": "Deflated Football",
+          "count": 1
+        },
+        {
+          "name": "Bicycle Pump",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Aviator Outfit (Faded Flush)",
+          "count": 1,
+          "type": "cosmetic"
+        },
+        {
+          "name": "Tagging Grenade",
+          "count": 5,
+          "type": "item"
+        },
+        {
+          "name": "Firecracker",
+          "count": 5,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "sparks_fly"
+      ],
+      "next": [
+        "test_case"
+      ],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "battening_down",
+      "name": "Battening Down",
+      "trader": "apollo",
+      "location": "Riven Tides",
+      "requiredItems": [],
+      "rewards": [
+        {
+          "name": "Riven Tides Hotel Keycard No. 107",
+          "count": 1,
+          "type": "item"
+        },
+        {
+          "name": "Smoke Grenade Trap",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "off_the_radar"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "shoring_up_defenses",
+      "name": "Shoring Up Defenses",
+      "trader": "apollo",
+      "location": "Riven Tides",
+      "requiredItems": [
+        {
+          "name": "ARC Alloy",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Barricade Kit",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Lure Grenade Trap",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Seeker Grenade",
+          "count": 6,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "off_the_radar"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    },
+    {
+      "id": "test_case",
+      "name": "Test Case",
+      "trader": "apollo",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Fireball Burner",
+          "count": 1
+        },
+        {
+          "name": "Firefly Burner",
+          "count": 1
+        },
+        {
+          "name": "Hornet Driver",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Fireworks Box",
+          "count": 1,
+          "type": "blueprint"
+        },
+        {
+          "name": "Seeker Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Blaze Grenade",
+          "count": 3,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "the_league"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": [
+        "Fireworks Box"
+      ]
+    },
+    {
+      "id": "movie_night",
+      "name": "Movie Night",
+      "trader": "apollo",
+      "location": "Any",
+      "requiredItems": [
+        {
+          "name": "Portable TV",
+          "count": 1
+        },
+        {
+          "name": "Stack Of Movie Tapes",
+          "count": 1
+        }
+      ],
+      "rewards": [
+        {
+          "name": "Showstopper",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Smoke Grenade",
+          "count": 3,
+          "type": "item"
+        },
+        {
+          "name": "Fireworks Box",
+          "count": 1,
+          "type": "item"
+        }
+      ],
+      "previous": [
+        "with_a_view"
+      ],
+      "next": [],
+      "coins": 0,
+      "blueprints": []
+    }
+  ],
+  "paths": {
+    "hullcracker": {
+      "quest": "the_majors_footlocker",
+      "path": [
+        "picking_up_the_pieces",
+        "clearer_skies",
+        "off_the_radar",
+        "a_bad_feeling",
+        "the_right_tool",
+        "a_better_use",
+        "greasing_her_palms",
+        "dormant_barons",
+        "what_we_left_behind",
+        "broken_monument",
+        "straight_record",
+        "keeping_the_memory",
+        "echoes_of_victory_ridge",
+        "unexpected_initiative",
+        "a_symbol_of_unification",
+        "the_majors_footlocker"
+      ]
+    },
+    "coins": [
+      {
+        "quest": "a_dead_end",
+        "coins": 2000,
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "the_right_tool",
+          "a_better_use",
+          "greasing_her_palms",
+          "doctors_orders",
+          "medical_merchandise",
+          "a_reveal_in_ruins",
+          "a_lay_of_the_land",
+          "eyes_in_the_sky",
+          "after_rain_comes",
+          "water_troubles",
+          "into_the_fray",
+          "paving_the_way",
+          "deciphering_the_data",
+          "groundbreaking",
+          "a_dead_end"
+        ]
+      },
+      {
+        "quest": "the_root_of_the_matter",
+        "coins": 1000,
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "the_right_tool",
+          "a_better_use",
+          "greasing_her_palms",
+          "doctors_orders",
+          "medical_merchandise",
+          "a_reveal_in_ruins",
+          "a_lay_of_the_land",
+          "eyes_in_the_sky",
+          "a_balanced_harvest",
+          "untended_garden",
+          "the_root_of_the_matter"
+        ]
+      }
+    ],
+    "blueprints": [
+      {
+        "quest": "last_entry",
+        "blueprints": [
+          "Yellow Light Stick"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "hatch_repairs",
+          "down_to_earth",
+          "the_trifecta",
+          "dust_on_the_wires",
+          "fragmented_logs",
+          "furtive_meetings",
+          "last_entry"
+        ]
+      },
+      {
+        "quest": "greasing_her_palms",
+        "blueprints": [
+          "Lure Grenade"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "the_right_tool",
+          "a_better_use",
+          "greasing_her_palms"
+        ]
+      },
+      {
+        "quest": "worth_your_salt",
+        "blueprints": [
+          "Vita Spray"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "the_right_tool",
+          "a_better_use",
+          "greasing_her_palms",
+          "doctors_orders",
+          "medical_merchandise",
+          "a_reveal_in_ruins",
+          "a_lay_of_the_land",
+          "eyes_in_the_sky",
+          "after_rain_comes",
+          "water_troubles",
+          "into_the_fray",
+          "paving_the_way",
+          "deciphering_the_data",
+          "groundbreaking",
+          "worth_your_salt"
+        ]
+      },
+      {
+        "quest": "industrial_espionage",
+        "blueprints": [
+          "Burletta"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "the_right_tool",
+          "a_better_use",
+          "greasing_her_palms",
+          "dormant_barons",
+          "what_we_left_behind",
+          "broken_monument",
+          "marked_for_death",
+          "market_correction",
+          "eyes_on_the_prize",
+          "industrial_espionage"
+        ]
+      },
+      {
+        "quest": "the_majors_footlocker",
+        "blueprints": [
+          "Hullcracker"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "the_right_tool",
+          "a_better_use",
+          "greasing_her_palms",
+          "dormant_barons",
+          "what_we_left_behind",
+          "broken_monument",
+          "straight_record",
+          "keeping_the_memory",
+          "echoes_of_victory_ridge",
+          "unexpected_initiative",
+          "a_symbol_of_unification",
+          "the_majors_footlocker"
+        ]
+      },
+      {
+        "quest": "sparks_fly",
+        "blueprints": [
+          "Trigger 'Nade"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "safe_passage",
+          "what_goes_around",
+          "sparks_fly"
+        ]
+      },
+      {
+        "quest": "test_case",
+        "blueprints": [
+          "Fireworks Box"
+        ],
+        "path": [
+          "picking_up_the_pieces",
+          "clearer_skies",
+          "off_the_radar",
+          "a_bad_feeling",
+          "safe_passage",
+          "what_goes_around",
+          "sparks_fly",
+          "the_league",
+          "test_case"
+        ]
+      }
+    ]
+  }
+}

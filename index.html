@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Arc Raiders Quest Planner</title>
+<meta name="description" content="Interactive quest tree planner for Arc Raiders">
+<meta name="theme-color" content="#1a1b26">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚔</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="header-top">
+    <h1>Arc Raiders — Quest Planner</h1>
+    <button id="menuToggle" class="menu-btn" aria-label="Toggle menu">☰</button>
+  </div>
+  <nav id="mainNav" class="nav-bar">
+    <div class="nav-row">
+      <button class="nav-btn active" data-mode="full">Full Tree</button>
+      <button class="nav-btn" data-mode="hullcracker">Hullcracker</button>
+      <button class="nav-btn" data-mode="coins">Coins</button>
+      <button class="nav-btn" data-mode="blueprints">Blueprints</button>
+    </div>
+    <div class="nav-row">
+      <div class="filter-group">
+        <label for="traderFilter">Trader:</label>
+        <select id="traderFilter">
+          <option value="all">All</option>
+          <option value="shani">Shani</option>
+          <option value="celeste">Celeste</option>
+          <option value="tian_wen">Tian Wen</option>
+          <option value="lance">Lance</option>
+          <option value="apollo">Apollo</option>
+        </select>
+      </div>
+      <div class="search-group">
+        <input type="text" id="searchInput" placeholder="Search quests..." autocomplete="off">
+      </div>
+      <button id="printBtn" class="nav-btn print-btn" title="Printable checklist">🖨 Print</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div id="loading" class="loading">Loading quest data...</div>
+  <div id="legend" class="legend">
+    <span class="legend-item" data-trader="shani"><span class="swatch"></span>Shani</span>
+    <span class="legend-item" data-trader="celeste"><span class="swatch"></span>Celeste</span>
+    <span class="legend-item" data-trader="tian_wen"><span class="swatch"></span>Tian Wen</span>
+    <span class="legend-item" data-trader="lance"><span class="swatch"></span>Lance</span>
+    <span class="legend-item" data-trader="apollo"><span class="swatch"></span>Apollo</span>
+  </div>
+  <div id="mynetwork" class="network-container"></div>
+  <div id="questDetail" class="quest-detail hidden"></div>
+</main>
+
+<div id="printView" class="print-view">
+  <div class="print-header">
+    <h1>Arc Raiders — Quest Checklist</h1>
+    <p>Generated: <span id="printDate"></span></p>
+  </div>
+  <div id="printContent"></div>
+</div>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
