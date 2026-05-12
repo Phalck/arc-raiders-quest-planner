@@ -2,6 +2,13 @@
 
 Created: 13 May 2026
 
+## Next Action (start here next session)
+
+The project is deployed and working. Future work should focus on the
+**feature roadmap** at the bottom of this file. The highest-priority items
+are user accounts with cloud sync, followed by the "Next 5" print ticket
+and map/location filtering. Pick any item from the roadmap to begin.
+
 ## What Was Built
 
 An interactive **Progressive Web App (PWA)** for navigating the Arc Raiders quest dependency tree. 100 quests scraped from the wiki, rendered as an interactive DAG with path highlighting for blueprints and coins.
