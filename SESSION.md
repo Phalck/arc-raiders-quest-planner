@@ -97,6 +97,9 @@ This regenerates `data/quests.json`. Then commit and redeploy.
 
 ### Server-side Features
 - **User accounts & cloud progress** — Add a backend (Supabase/Firebase/custom API) so users can register, log in, and sync quest completion across devices. Requires auth, a progress table, and save/load endpoints.
+- **Settings/admin page** — A dedicated page with:
+  - "Clear Local Progress" — wipes localStorage, resets the tree to scratch
+  - "Delete My Account" — removes the user record and all progress from the backend database. Requires re-authentication first. Shows a clear warning about data loss.
 
 ### Filtering & Display
 - **Filter by map/location** — Location dropdown alongside the Trader filter. Extracts unique values from the `location` field in quests.json.
@@ -109,7 +112,7 @@ This regenerates `data/quests.json`. Then commit and redeploy.
 - Add collapsible required items/rewards in the full print view
 
 ### UX Polish
-- "Reset all progress" button
+- **"Join Expedition" reset** — After opting to join an in-game expedition (season/prestige reset), provide a one-click "Reset Progress" button that clears all completion data from localStorage and optionally archives the expedition's progress on a cloud backend before resetting. Show a confirmation dialog warning this cannot be undone.
 - Progress statistics counter (e.g., "12/100 completed")
 - Better mobile touch handling for the vis-network tree
 - Manual node positioning to match the wiki's quest tree image
