@@ -1,20 +1,12 @@
 (function () {
   'use strict';
 
-  const COLORS = {
-    shani:     { bg: '#7dcfff', border: '#3b8db5', text: '#1a1b26' },
-    celeste:   { bg: '#9ece6a', border: '#689d3a', text: '#1a1b26' },
-    tian_wen:  { bg: '#e0af68', border: '#b8883e', text: '#1a1b26' },
-    lance:     { bg: '#bb9af7', border: '#8b5cf6', text: '#1a1b26' },
-    apollo:    { bg: '#ff9e64', border: '#d97a3e', text: '#1a1b26' },
-  };
-
-  const DIM = {
-    shani:     { bg: '#1e3d47', border: '#2a5a6b', text: '#5a8a9a' },
-    celeste:   { bg: '#2a3d1e', border: '#3d5a2a', text: '#6b9a4a' },
-    tian_wen:  { bg: '#3d351e', border: '#5a4e2a', text: '#8a7a4a' },
-    lance:     { bg: '#2e1e3d', border: '#452a5a', text: '#6b4a8a' },
-    apollo:    { bg: '#3d2a1e', border: '#5a3e2a', text: '#8a6a4a' },
+  const UNIFORM = { bg: '#2a2d3e', border: '#3b4261', text: '#c0caf5' };
+  const UNIFORM_DIM = { bg: '#1a1a2a', border: '#2a2a3a', text: '#5a5a7a' };
+  const MODE_HIGHLIGHT = {
+    hullcracker: '#7aa2f7',
+    coins: '#e0af68',
+    blueprints: '#bb9af7',
   };
 
   const STATE_COLORS = {
@@ -50,11 +42,6 @@
   }
   function lset() {
     localStorage.setItem('ar_completed_quests', JSON.stringify(completedQuests));
-  }
-
-  function getColors(trader, dim) {
-    const key = dim ? DIM : COLORS;
-    return key[trader] || { bg: '#444', border: '#555', text: '#aaa' };
   }
 
   function getStateStyle(state, dim) {
@@ -98,7 +85,7 @@
     const arr = [];
     for (const q of allQuests) {
       const state = completedQuests[q.id] || null;
-      const colors = getColors(q.trader, false);
+      const base = UNIFORM;
       const stateClr = getStateStyle(state, false);
       const prefix = stateClr ? stateClr.prefix : '';
       arr.push({
@@ -106,19 +93,18 @@
         label: buildNodeLabel(q, state, prefix),
         shape: 'box',
         color: {
-          background: stateClr ? stateClr.bg : colors.bg,
-          border: stateClr ? stateClr.border : colors.border,
-          highlight: { background: colors.bg, border: '#7aa2f7' },
+          background: stateClr ? stateClr.bg : base.bg,
+          border: stateClr ? stateClr.border : base.border,
+          highlight: { background: base.bg, border: '#7aa2f7' },
         },
         font: {
-          color: stateClr ? stateClr.text : colors.text,
+          color: stateClr ? stateClr.text : base.text,
           size: 12,
           face: 'system-ui, sans-serif',
         },
         borderWidth: stateClr ? 2 : 1,
         borderWidthSelected: 2,
         margin: { top: 8, bottom: 8, left: 10, right: 10 },
-        group: q.trader || 'unknown',
         quest: q,
         state: state,
         completed: state === 'completed',
@@ -212,10 +198,6 @@
       groups: {},
     };
 
-    for (const [t, c] of Object.entries(COLORS)) {
-      options.groups[t] = { color: { background: c.bg, border: c.border } };
-    }
-
     network = new vis.Network(networkEl, { nodes, edges }, options);
 
     network.on('click', function (params) {
@@ -257,7 +239,7 @@
 
     const q = node.quest;
     const isDim = currentMode !== 'full' && q && !isOnActivePath(q);
-    const base = getColors(q?.trader, isDim);
+    const base = isDim ? UNIFORM_DIM : UNIFORM;
     const stateClr = getStateStyle(newState, isDim);
     const prefix = stateClr ? stateClr.prefix : '';
     nodes.update({
@@ -285,11 +267,13 @@
       const hp = questData.paths.hullcracker;
       if (hp) for (const id of hp.path) set.add(id);
     } else if (currentMode === 'coins') {
-      for (const cp of questData.paths.coins)
-        for (const id of cp.path) set.add(id);
+      for (const q of allQuests) {
+        if (q.rewards.some(r => r.type === 'coins')) set.add(q.id);
+      }
     } else if (currentMode === 'blueprints') {
-      for (const bp of questData.paths.blueprints)
-        for (const id of bp.path) set.add(id);
+      for (const q of allQuests) {
+        if (q.rewards.some(r => r.type === 'blueprint')) set.add(q.id);
+      }
     }
     return set;
   }
@@ -300,7 +284,7 @@
     if (mode === 'full') {
       for (const node of nodes.get()) {
         const q = node.quest;
-        const base = getColors(q?.trader, false);
+        const base = UNIFORM;
         const state = completedQuests[node.id] || null;
         const stateClr = getStateStyle(state, false);
         const prefix = stateClr ? stateClr.prefix : '';
@@ -330,20 +314,22 @@
 
     const pathIds = getPathIds();
 
+    const highlightColor = MODE_HIGHLIGHT[currentMode] || '#7aa2f7';
+
     for (const node of nodes.get()) {
       const onPath = pathIds.has(node.id);
       const q = node.quest;
       const state = completedQuests[node.id] || null;
       const stateClr = getStateStyle(state, !onPath);
-      const base = getColors(q?.trader, !onPath);
+      const base = onPath ? UNIFORM : UNIFORM_DIM;
       const prefix = stateClr ? stateClr.prefix : '';
       nodes.update({
         id: node.id,
         label: buildNodeLabel(q, state, prefix),
         color: {
           background: stateClr ? stateClr.bg : base.bg,
-          border: onPath ? '#7aa2f7' : (stateClr ? stateClr.border : base.border),
-          highlight: { background: base.bg, border: '#7aa2f7' },
+          border: onPath ? highlightColor : (stateClr ? stateClr.border : base.border),
+          highlight: { background: base.bg, border: highlightColor },
         },
         font: { color: stateClr ? stateClr.text : base.text, size: onPath ? 12 : 10 },
         borderWidth: onPath ? 2 : (stateClr ? 2 : 1),
@@ -355,7 +341,7 @@
       const onPath = pathIds.has(edge.to) && pathIds.has(edge.from);
       edges.update({
         id: edge.id,
-        color: { color: onPath ? '#7aa2f7' : '#2a2d3a', highlight: '#7aa2f7' },
+        color: { color: onPath ? highlightColor : '#2a2d3a', highlight: highlightColor },
         width: onPath ? 2.5 : 0.4,
         dashes: !onPath,
       });
@@ -365,7 +351,7 @@
   function showDetail(id) {
     const q = questMap[id];
     if (!q) return;
-    const base = getColors(q.trader, false);
+    const base = UNIFORM;
     const done = completedQuests[id];
     let html = '<button class="close-btn" onclick="document.getElementById(\'questDetail\').classList.add(\'hidden\')">✕</button>';
     html += `<h2 style="color:${base.bg}">${q.name}</h2>`;
