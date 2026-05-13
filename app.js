@@ -70,6 +70,17 @@
     return '';
   }
 
+  function buildNodeLabel(q, state, prefix) {
+    let label = prefix + q.name;
+    if (state === 'completed') {
+      for (const r of q.rewards) {
+        if (r.type === 'coins') label += '\n💰 ' + Number(r.count).toLocaleString() + ' Coins';
+        else if (r.type === 'blueprint') label += '\n📘 ' + r.name;
+      }
+    }
+    return label;
+  }
+
   function cloudSave() {
     if (window.__arSupabase) {
       window.__arSupabase.saveProgress(completedQuests);
@@ -94,7 +105,7 @@
       const prefix = stateClr ? stateClr.prefix : '';
       arr.push({
         id: q.id,
-        label: prefix + q.name,
+        label: buildNodeLabel(q, state, prefix),
         shape: 'box',
         color: {
           background: stateClr ? stateClr.bg : colors.bg,
@@ -195,6 +206,7 @@
       },
       nodes: {
         shape: 'box', borderWidth: 1,
+        widthConstraint: 200,
         shadow: {
           enabled: false,
         },
@@ -245,13 +257,14 @@
     lset();
     cloudSave();
 
-    const isDim = currentMode !== 'full' && node.quest && !isOnActivePath(node.quest);
-    const base = getColors(node.quest?.trader, isDim);
+    const q = node.quest;
+    const isDim = currentMode !== 'full' && q && !isOnActivePath(q);
+    const base = getColors(q?.trader, isDim);
     const stateClr = getStateStyle(newState, isDim);
     const prefix = stateClr ? stateClr.prefix : '';
     nodes.update({
       id,
-      label: prefix + node.quest.name,
+      label: buildNodeLabel(q, newState, prefix),
       color: {
         background: stateClr ? stateClr.bg : base.bg,
         border: stateClr ? stateClr.border : base.border,
@@ -295,7 +308,7 @@
         const prefix = stateClr ? stateClr.prefix : '';
         nodes.update({
           id: node.id,
-          label: prefix + q.name,
+          label: buildNodeLabel(q, state, prefix),
           color: {
             background: stateClr ? stateClr.bg : base.bg,
             border: stateClr ? stateClr.border : base.border,
@@ -328,7 +341,7 @@
       const prefix = stateClr ? stateClr.prefix : '';
       nodes.update({
         id: node.id,
-        label: prefix + q.name,
+        label: buildNodeLabel(q, state, prefix),
         color: {
           background: stateClr ? stateClr.bg : base.bg,
           border: onPath ? '#7aa2f7' : (stateClr ? stateClr.border : base.border),

@@ -1,9 +1,18 @@
 # Session Memory — Arc Raiders Quest Planner
 
 Created: 13 May 2026
-Updated: 13 May 2026 (session 2)
+Updated: 13 May 2026 (session 3)
 
 ## What Was Built This Session
+
+### 3. Equal-Sized Nodes with Reward Info
+- All quest nodes now have a fixed width of 200px (`widthConstraint: 200`) for uniform sizing
+- Completed quests display their rewards inline in the node label:
+  - Coin rewards → `💰 2,000 Coins`
+  - Blueprint rewards → `📘 Burletta`
+- Multi-line labels use `\n` for stacking, wrapping naturally within the fixed width
+
+## What Was Built Previously
 
 ### 1. 3-State Quest Toggle
 Quest nodes now cycle through three states on click:
