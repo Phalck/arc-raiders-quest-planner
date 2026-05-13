@@ -1,47 +1,74 @@
 # Session Memory — Arc Raiders Quest Planner
 
 Created: 13 May 2026
+Updated: 13 May 2026 (session 2)
+
+## What Was Built This Session
+
+### 1. 3-State Quest Toggle
+Quest nodes now cycle through three states on click:
+- **Not Completed** — default, trader-colored node
+- **Tracked** — amber border/bg, prefixed with ◉ in the node label
+- **Completed** — green border/bg, prefixed with ✓ in the node label
+
+Legacy `true/false` progress data is auto-migrated on first load.
+
+### 2. User Accounts & Cloud Sync (Supabase)
+- **Supabase backend** — project created at `https://nhhmkdjwtfnganubffpm.supabase.co`
+- **Auth UI** — "Sign In" button in the top bar opens a modal for login/signup
+- **Cloud save** — quest progress auto-syncs to a `user_progress` table (debounced 500ms)
+- **Cloud load** — when a user signs in, their cloud progress overwrites local
+- **Optional** — accounts are NOT required; the app works fully offline without signing in
+- **RLS enabled** — users can only read/write their own progress row
+
+### Supabase DB Schema (`user_progress`)
+```sql
+CREATE TABLE user_progress (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES auth.users(id) NOT NULL UNIQUE,
+  progress jsonb DEFAULT '{}'::jsonb,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+);
+```
 
 ## Next Action (start here next session)
 
-The project is deployed and working. Future work should focus on the
-**feature roadmap** at the bottom of this file. The highest-priority items
-are user accounts with cloud sync, followed by the "Next 5" print ticket
-and map/location filtering. Pick any item from the roadmap to begin.
+Pick any item from the feature roadmap below. Suggested priority:
+1. **"Next 5" print ticket** — scan forward from last completed quest, print next 5 uncompleted
+2. **Filter by map/location** — location dropdown alongside Trader filter
+3. **Progress statistics counter** — "12/100 completed" in the header
+4. **Settings/admin page** — clear progress, delete account
+5. **Auto wiki scraper** — GitHub Actions cron for data refresh
 
-## What Was Built
+## Tech Stack (updated)
 
-An interactive **Progressive Web App (PWA)** for navigating the Arc Raiders quest dependency tree. 100 quests scraped from the wiki, rendered as an interactive DAG with path highlighting for blueprints and coins.
+- **Backend**: Supabase (Postgres + Auth + REST API)
+- **Frontend**: Plain HTML/CSS/JS, vis-network CDN, Supabase JS client v2 (UMD CDN)
 
-## Tech Stack
-
-- **Frontend**: Plain HTML/CSS/JS (no framework), vis-network CDN for interactive tree
-- **Data**: `data/quests.json` — scraped from the wiki via the MediaWiki API
-- **Scraper**: `scraper/scrape.js` — Node.js script that fetches all 100 quest pages and extracts infobox data
-- **PWA**: `manifest.json` + `sw.js` for offline support and mobile installability
-- **Deployment**: Static site on Vercel
-
-## Project Structure
+## Project Structure (updated)
 
 ```
 arc-raiders-quest-planner/
-├── index.html          # Main page — loads vis-network CDN
-├── styles.css          # All styling (dark theme + @media print)
-├── app.js              # All logic — tree, paths, checklists, filters, print
-├── manifest.json       # PWA manifest for "Add to Home Screen"
-├── sw.js               # Service worker for offline caching
+├── index.html          # Main page — auth modal, vis-network, Supabase CDN
+├── styles.css          # All styling — auth modal, state swatches, print
+├── app.js              # Core logic — 3-state toggle, paths, sync, print
+├── supabase.js         # Supabase client init, auth, cloud save/load
+├── manifest.json       # PWA manifest
+├── sw.js               # Service worker
 ├── vercel.json         # Vercel static deployment config
 ├── data/
-│   └── quests.json     # 100 quests with dependencies, rewards, paths
+│   └── quests.json     # 100 quests
 ├── scraper/
-│   └── scrape.js       # Wiki scraper — run `node scraper/scrape.js` to refresh data
-└── SESSION.md          # This file
+│   └── scrape.js
+└── SESSION.md
 ```
 
 ## Key URLs
 
 - **Live site**: https://arc-raiders-quest-planner.vercel.app
 - **GitHub**: https://github.com/Phalck/arc-raiders-quest-planner
+- **Supabase**: https://supabase.com/dashboard/project/nhhmkdjwtfnganubffpm
 
 ## Account Situation
 
@@ -49,12 +76,9 @@ arc-raiders-quest-planner/
 |---------|---------|------|
 | **GitHub** | Phalck | Repo created and pushed |
 | **Vercel** | mattiasfalck | Site deployed manually |
-
-**IMPORTANT**: The Vercel account (mattiasfalck) and GitHub account (Phalck) are NOT linked. This means `git push` does NOT auto-deploy. See "How to Deploy" below.
+| **Supabase** | (same account) | Project: arc-raiders-quest-planner |
 
 ## How to Deploy After Code Changes
-
-Every time you push to GitHub, you must also deploy to Vercel manually.
 
 ### 1. Push to GitHub
 ```bash
@@ -69,68 +93,23 @@ cd /home/phalck/Projects/arc-raiders-quest-planner
 vercel --prod
 ```
 
-You may need to authenticate Vercel again if the session expired. The CLI will show a device code URL.
-
 ### 3. Verify
 Visit https://arc-raiders-quest-planner.vercel.app to confirm the update is live.
 
-**Shortcut** (combine both steps):
+**Shortcut**:
 ```bash
 git add -A && git commit -m "msg" && git push && vercel --prod
 ```
 
-## What the App Does
+## Feature Roadmap
 
-### Navigation Modes (top bar buttons)
-| Mode | What it shows |
-|------|---------------|
-| **Full Tree** | All 100 quests in a hierarchical DAG. Color = trader. |
-| **Hullcracker** | Highlights the 16-quest path → The Major's Footlocker (Hullcracker Blueprint) |
-| **Coins** | Highlights paths to The Root Of The Matter (1000 coins) and A Dead End (2000 coins) |
-| **Blueprints** | Highlights all 7 blueprint quests (Lure Grenade, Burletta, Hullcracker, Yellow Light Stick, Vita Spray, Trigger 'Nade, Fireworks Box) |
-
-### Interaction
-- **Click** a quest node → toggle completed (green border)
-- **Double-click** → opens detail panel (required items, rewards, prerequisites)
-- **Trader filter** dropdown → show only one trader's quests
-- **Search** → filter by quest name
-- **🖨 Print** → generates formatted checklist with [✓] boxes for pen-and-paper tracking
-
-### Path Data (pre-computed in quests.json)
-- Hullcracker path: 16 quests starting from Picking Up The Pieces
-- Coin path to A Dead End: 19 quests (2000 coins)
-- Coin path to The Root Of The Matter: 15 quests (1000 coins)
-- All blueprint paths trace back to root quests
-
-## If You Need to Re-scrape (wiki data changed)
-
-```bash
-node scraper/scrape.js
-```
-
-This regenerates `data/quests.json`. Then commit and redeploy.
-
-## Next Steps / Potential Improvements
-
-### Server-side Features
-- **User accounts & cloud progress** — Add a backend (Supabase/Firebase/custom API) so users can register, log in, and sync quest completion across devices. Requires auth, a progress table, and save/load endpoints.
-- **Settings/admin page** — A dedicated page with:
-  - "Clear Local Progress" — wipes localStorage, resets the tree to scratch
-  - "Delete My Account" — removes the user record and all progress from the backend database. Requires re-authentication first. Shows a clear warning about data loss.
-
-### Filtering & Display
-- **Filter by map/location** — Location dropdown alongside the Trader filter. Extracts unique values from the `location` field in quests.json.
-
-### Wiki Integration
-- **Auto wiki scraper** — Schedule `node scraper/scrape.js` via GitHub Actions cron to detect quest changes on the wiki. Add diff check against committed `quests.json` and auto-create a PR when data changes.
-
-### Print Improvements
-- **"Next 5" ticket** — On any path mode, scan forward from the last completed quest and print the next 5 uncompleted missions as a tick-box checklist with required items. Useful for session planning.
-- Add collapsible required items/rewards in the full print view
-
-### UX Polish
-- **"Join Expedition" reset** — After opting to join an in-game expedition (season/prestige reset), provide a one-click "Reset Progress" button that clears all completion data from localStorage and optionally archives the expedition's progress on a cloud backend before resetting. Show a confirmation dialog warning this cannot be undone.
-- Progress statistics counter (e.g., "12/100 completed")
-- Better mobile touch handling for the vis-network tree
-- Manual node positioning to match the wiki's quest tree image
-- Connect GitHub ↔ Vercel for auto-deploy on push
+### Remaining
+- **"Next 5" print ticket** — On path modes, scan forward from last completed, print next 5 uncompleted with required items
+- **Filter by map/location** — Location dropdown alongside Trader filter (extract from quests.json location field)
+- **Progress statistics counter** — e.g. "12/100 completed" in header
+- **Settings/admin page** — clear local progress, delete account
+- **Auto wiki scraper** — GitHub Actions cron + PR on data change
+- **"Join Expedition" reset** — one-click reset with confirmation
+- **Better mobile touch handling** — vis-network touch improvements
+- **Manual node positioning** — match wiki quest tree layout
+- **Connect GitHub ↔ Vercel** — auto-deploy on push

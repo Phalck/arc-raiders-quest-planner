@@ -17,7 +17,14 @@
     apollo:    { bg: '#3d2a1e', border: '#5a3e2a', text: '#8a6a4a' },
   };
 
-  const COMPLETED = { bg: '#1a2b1a', border: '#4a8a4a', text: '#6aaa6a' };
+  const STATE_COLORS = {
+    completed: { bg: '#1a2b1a', border: '#4a8a4a', text: '#6aaa6a', prefix: '\u2713 ' },
+    tracked:   { bg: '#2a2a1a', border: '#d7a83e', text: '#d7b84a', prefix: '\u25c9 ' },
+  };
+  const DIM_STATES = {
+    completed: { bg: '#1a2b1a', border: '#3a6a3a', text: '#5a8a5a', prefix: '\u2713 ' },
+    tracked:   { bg: '#1a1a0e', border: '#7a6a1e', text: '#8a8a3a', prefix: '\u25c9 ' },
+  };
   const ROOT_QUEST = 'picking_up_the_pieces';
 
   let questData, allQuests, questMap;
@@ -50,31 +57,62 @@
     return key[trader] || { bg: '#444', border: '#555', text: '#aaa' };
   }
 
+  function getStateStyle(state, dim) {
+    if (state === 'completed' || state === true) return dim ? DIM_STATES.completed : STATE_COLORS.completed;
+    if (state === 'tracked') return dim ? DIM_STATES.tracked : STATE_COLORS.tracked;
+    return null;
+  }
+
+  function getPrintSymbol(id) {
+    const s = completedQuests[id];
+    if (s === 'completed' || s === true) return '\u2713';
+    if (s === 'tracked') return '\u25c9';
+    return '';
+  }
+
+  function cloudSave() {
+    if (window.__arSupabase) {
+      window.__arSupabase.saveProgress(completedQuests);
+    }
+  }
+
+  window.__arLoadProgress = function (cloudProgress) {
+    completedQuests = cloudProgress || {};
+    lset();
+    if (typeof applyMode === 'function') {
+      applyMode(currentMode);
+      applyFilters();
+    }
+  };
+
   function makeNodes(allQuests) {
     const arr = [];
     for (const q of allQuests) {
-      const isDone = completedQuests[q.id];
+      const state = completedQuests[q.id] || null;
       const colors = getColors(q.trader, false);
+      const stateClr = getStateStyle(state, false);
+      const prefix = stateClr ? stateClr.prefix : '';
       arr.push({
         id: q.id,
-        label: q.name,
+        label: prefix + q.name,
         shape: 'box',
         color: {
-          background: isDone ? COMPLETED.bg : colors.bg,
-          border: isDone ? COMPLETED.border : colors.border,
+          background: stateClr ? stateClr.bg : colors.bg,
+          border: stateClr ? stateClr.border : colors.border,
           highlight: { background: colors.bg, border: '#7aa2f7' },
         },
         font: {
-          color: isDone ? COMPLETED.text : colors.text,
+          color: stateClr ? stateClr.text : colors.text,
           size: 12,
           face: 'system-ui, sans-serif',
         },
-        borderWidth: isDone ? 2 : 1,
+        borderWidth: stateClr ? 2 : 1,
         borderWidthSelected: 2,
         margin: { top: 6, bottom: 6, left: 10, right: 10 },
         group: q.trader || 'unknown',
         quest: q,
-        completed: isDone,
+        state: state,
+        completed: state === 'completed',
       });
     }
     return new vis.DataSet(arr);
@@ -104,6 +142,11 @@
   async function init() {
     try {
       completedQuests = lget();
+      let needsMigrate = false;
+      for (const [id, val] of Object.entries(completedQuests)) {
+        if (val === true) { completedQuests[id] = 'completed'; needsMigrate = true; }
+      }
+      if (needsMigrate) lset();
       const res = await fetch('data/quests.json');
       questData = await res.json();
       allQuests = questData.quests;
@@ -114,6 +157,7 @@
       buildNetwork();
       loadingEl.style.display = 'none';
       wireUI();
+      if (window.__arSupabase) window.__arSupabase.init();
     } catch (err) {
       loadingEl.textContent = 'Failed to load quest data: ' + err.message;
     }
@@ -184,22 +228,37 @@
   function toggleQuest(id) {
     const node = nodes.get(id);
     if (!node) return;
-    completedQuests[id] = !completedQuests[id];
-    node.completed = completedQuests[id];
+
+    const current = completedQuests[id];
+    let newState;
+    if (!current) newState = 'tracked';
+    else if (current === 'tracked') newState = 'completed';
+    else newState = null;
+
+    if (newState) {
+      completedQuests[id] = newState;
+    } else {
+      delete completedQuests[id];
+    }
+    node.state = newState;
+    node.completed = newState === 'completed';
     lset();
+    cloudSave();
 
     const isDim = currentMode !== 'full' && node.quest && !isOnActivePath(node.quest);
     const base = getColors(node.quest?.trader, isDim);
-    const done = node.completed;
+    const stateClr = getStateStyle(newState, isDim);
+    const prefix = stateClr ? stateClr.prefix : '';
     nodes.update({
       id,
+      label: prefix + node.quest.name,
       color: {
-        background: done ? (isDim ? '#1a2b1a' : COMPLETED.bg) : base.bg,
-        border: done ? (isDim ? '#3a6a3a' : COMPLETED.border) : base.border,
+        background: stateClr ? stateClr.bg : base.bg,
+        border: stateClr ? stateClr.border : base.border,
         highlight: { background: base.bg, border: '#7aa2f7' },
       },
-      font: { color: done ? (isDim ? '#5a8a5a' : COMPLETED.text) : base.text, size: isDim ? 10 : 12 },
-      borderWidth: done ? 2 : 1,
+      font: { color: stateClr ? stateClr.text : base.text, size: isDim ? 10 : 12 },
+      borderWidth: stateClr ? 2 : 1,
     });
   }
 
@@ -231,16 +290,19 @@
       for (const node of nodes.get()) {
         const q = node.quest;
         const base = getColors(q?.trader, false);
-        const done = completedQuests[node.id];
+        const state = completedQuests[node.id] || null;
+        const stateClr = getStateStyle(state, false);
+        const prefix = stateClr ? stateClr.prefix : '';
         nodes.update({
           id: node.id,
+          label: prefix + q.name,
           color: {
-            background: done ? COMPLETED.bg : base.bg,
-            border: done ? COMPLETED.border : base.border,
+            background: stateClr ? stateClr.bg : base.bg,
+            border: stateClr ? stateClr.border : base.border,
             highlight: { background: base.bg, border: '#7aa2f7' },
           },
-          font: { color: done ? COMPLETED.text : base.text, size: 12 },
-          borderWidth: done ? 2 : 1,
+          font: { color: stateClr ? stateClr.text : base.text, size: 12 },
+          borderWidth: stateClr ? 2 : 1,
           shape: 'box',
         });
       }
@@ -260,17 +322,20 @@
     for (const node of nodes.get()) {
       const onPath = pathIds.has(node.id);
       const q = node.quest;
+      const state = completedQuests[node.id] || null;
+      const stateClr = getStateStyle(state, !onPath);
       const base = getColors(q?.trader, !onPath);
-      const done = completedQuests[node.id];
+      const prefix = stateClr ? stateClr.prefix : '';
       nodes.update({
         id: node.id,
+        label: prefix + q.name,
         color: {
-          background: done ? (onPath ? COMPLETED.bg : '#1a2b1a') : base.bg,
-          border: onPath ? '#7aa2f7' : (done ? COMPLETED.border : base.border),
+          background: stateClr ? stateClr.bg : base.bg,
+          border: onPath ? '#7aa2f7' : (stateClr ? stateClr.border : base.border),
           highlight: { background: base.bg, border: '#7aa2f7' },
         },
-        font: { color: done ? (onPath ? COMPLETED.text : '#5a8a5a') : base.text, size: onPath ? 12 : 10 },
-        borderWidth: onPath ? 2 : (done ? 2 : 1),
+        font: { color: stateClr ? stateClr.text : base.text, size: onPath ? 12 : 10 },
+        borderWidth: onPath ? 2 : (stateClr ? 2 : 1),
         shadow: onPath ? { enabled: true, color: 'rgba(122,162,247,0.3)', size: 10 } : { enabled: false },
       });
     }
@@ -309,7 +374,11 @@
     if (q.previous.length) {
       html += `<div class="dr"><strong>Requires:</strong> ${q.previous.map(p => questMap[p]?.name || p).join(', ')}</div>`;
     }
-    html += `<div class="dr" style="margin-top:6px;color:${done ? 'var(--green)' : 'var(--fg2)'}"><strong>Status:</strong> ${done ? '✓ Completed' : 'Not completed'}</div>`;
+    const state = completedQuests[id];
+    const isLegacyDone = state === true;
+    const statusText = isLegacyDone || state === 'completed' ? '✓ Completed' : state === 'tracked' ? '◉ Tracked' : 'Not completed';
+    const statusColor = isLegacyDone || state === 'completed' ? 'var(--green)' : state === 'tracked' ? 'var(--yellow)' : 'var(--fg2)';
+    html += `<div class="dr" style="margin-top:6px;color:${statusColor}"><strong>Status:</strong> ${statusText}</div>`;
     html += `<button class="dt-btn" onclick="document.querySelector('#questDetail .close-btn').click()">Close</button>`;
 
     detailEl.innerHTML = html;
@@ -328,7 +397,7 @@
       for (const id of hc.path) {
         const q = questMap[id];
         if (!q) continue;
-        const c = completedQuests[id] ? '✓' : '';
+        const c = getPrintSymbol(id);
         html += `<div class="pq"><span class="cb">${c}</span><div><span class="qn">${q.name}</span> <span class="qm">— ${q.trader}</span></div></div>`;
       }
       html += '</div>';
@@ -342,7 +411,7 @@
       for (const id of cp.path) {
         const q = questMap[id];
         if (!q) continue;
-        const c = completedQuests[id] ? '✓' : '';
+        const c = getPrintSymbol(id);
         html += `<div class="pq"><span class="cb">${c}</span><div><span class="qn">${q.name}</span> <span class="qm">— ${q.trader}</span></div></div>`;
       }
     }
@@ -356,7 +425,7 @@
       for (const id of bp.path) {
         const q = questMap[id];
         if (!q) continue;
-        const c = completedQuests[id] ? '✓' : '';
+        const c = getPrintSymbol(id);
         html += `<div class="pq"><span class="cb">${c}</span><div><span class="qn">${q.name}</span> <span class="qm">— ${q.trader}</span></div></div>`;
       }
     }
@@ -369,7 +438,7 @@
       if (!list.length) continue;
       html += `<div class="pgl">${trader.charAt(0).toUpperCase() + trader.slice(1).replace('_', ' ')}</div>`;
       for (const q of list) {
-        const c = completedQuests[q.id] ? '✓' : '';
+        const c = getPrintSymbol(q.id);
         html += `<div class="pq"><span class="cb">${c}</span><div><span class="qn">${q.name}</span></div></div>`;
       }
     }
