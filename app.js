@@ -72,11 +72,9 @@
 
   function buildNodeLabel(q, state, prefix) {
     let label = prefix + q.name;
-    if (state === 'completed') {
-      for (const r of q.rewards) {
-        if (r.type === 'coins') label += '\n💰 ' + Number(r.count).toLocaleString() + ' Coins';
-        else if (r.type === 'blueprint') label += '\n📘 ' + r.name;
-      }
+    for (const r of q.rewards) {
+      if (r.type === 'coins') label += '\n💰 ' + Number(r.count).toLocaleString() + ' Coins';
+      else if (r.type === 'blueprint') label += '\n📘 ' + r.name;
     }
     return label;
   }
@@ -119,7 +117,7 @@
         },
         borderWidth: stateClr ? 2 : 1,
         borderWidthSelected: 2,
-        margin: { top: 6, bottom: 6, left: 10, right: 10 },
+        margin: { top: 8, bottom: 8, left: 10, right: 10 },
         group: q.trader || 'unknown',
         quest: q,
         state: state,

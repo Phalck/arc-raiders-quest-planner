@@ -1,9 +1,10 @@
-const CACHE = 'ar-quest-planner-v1';
+const CACHE = 'ar-quest-planner-v2';
 const ASSETS = [
   '/',
   '/index.html',
   '/styles.css',
   '/app.js',
+  '/supabase.js',
   '/data/quests.json',
   '/manifest.json',
 ];
