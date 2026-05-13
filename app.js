@@ -25,6 +25,7 @@
   let currentTrader = 'all';
   let currentSearch = '';
   let completedQuests = {};
+  let childrenOf = {};
   let longPressTimer = null;
 
   const networkEl = document.getElementById('mynetwork');
@@ -146,7 +147,14 @@
       questData = await res.json();
       allQuests = questData.quests;
       questMap = {};
-      for (const q of allQuests) questMap[q.id] = q;
+      childrenOf = {};
+      for (const q of allQuests) {
+        questMap[q.id] = q;
+        for (const pid of q.previous) {
+          if (!childrenOf[pid]) childrenOf[pid] = [];
+          childrenOf[pid].push(q.id);
+        }
+      }
 
       loadingEl.textContent = 'Building quest tree...';
       buildNetwork();
@@ -220,39 +228,33 @@
   function toggleQuest(id) {
     const node = nodes.get(id);
     if (!node) return;
+    const q = node.quest;
 
     const current = completedQuests[id];
     let newState;
-    if (!current) newState = 'tracked';
-    else if (current === 'tracked') newState = 'completed';
-    else newState = null;
+
+    if (!current) {
+      newState = 'tracked';
+    } else if (current === 'tracked') {
+      if (canComplete(q)) {
+        newState = 'completed';
+      } else {
+        newState = null;
+      }
+    } else {
+      newState = null;
+      cascadeUncomplete(id);
+    }
 
     if (newState) {
       completedQuests[id] = newState;
     } else {
       delete completedQuests[id];
     }
-    node.state = newState;
-    node.completed = newState === 'completed';
+
     lset();
     cloudSave();
-
-    const q = node.quest;
-    const isDim = currentMode !== 'full' && q && !isOnActivePath(q);
-    const base = isDim ? UNIFORM_DIM : UNIFORM;
-    const stateClr = getStateStyle(newState, isDim);
-    const prefix = stateClr ? stateClr.prefix : '';
-    nodes.update({
-      id,
-      label: buildNodeLabel(q, newState, prefix),
-      color: {
-        background: stateClr ? stateClr.bg : base.bg,
-        border: stateClr ? stateClr.border : base.border,
-        highlight: { background: base.bg, border: '#7aa2f7' },
-      },
-      font: { color: stateClr ? stateClr.text : base.text, size: isDim ? 10 : 12 },
-      borderWidth: stateClr ? 2 : 1,
-    });
+    applyMode(currentMode);
   }
 
   function isOnActivePath(q) {
@@ -278,6 +280,64 @@
     return set;
   }
 
+  function canComplete(q) {
+    if (q.id === ROOT_QUEST) return true;
+    if (!q.previous || q.previous.length === 0) return true;
+    return q.previous.every(pid => completedQuests[pid] === 'completed');
+  }
+
+  function cascadeUncomplete(id) {
+    const stack = [id];
+    while (stack.length) {
+      const qid = stack.pop();
+      const kids = childrenOf[qid];
+      if (!kids) continue;
+      for (const kidId of kids) {
+        if (completedQuests[kidId] === 'completed') {
+          delete completedQuests[kidId];
+          stack.push(kidId);
+        }
+      }
+    }
+  }
+
+  function computeEdgeStyles() {
+    const boldEdges = new Set();
+    const dashedEdges = new Set();
+
+    const tracked = allQuests.filter(q => completedQuests[q.id] === 'tracked');
+    if (tracked.length === 0) return { boldEdges, dashedEdges };
+
+    const visited = new Set();
+
+    function walkUp(questId) {
+      if (visited.has(questId)) return;
+      visited.add(questId);
+
+      const q = questMap[questId];
+      if (!q) return;
+
+      for (const pid of q.previous) {
+        const edgeId = pid + '->' + questId;
+        const childState = completedQuests[questId];
+
+        if (childState === 'completed') {
+          boldEdges.add(edgeId);
+        } else {
+          dashedEdges.add(edgeId);
+        }
+
+        walkUp(pid);
+      }
+    }
+
+    for (const q of tracked) {
+      walkUp(q.id);
+    }
+
+    return { boldEdges, dashedEdges };
+  }
+
   function applyMode(mode) {
     currentMode = mode;
 
@@ -301,12 +361,26 @@
           shape: 'box',
         });
       }
+      const { boldEdges, dashedEdges } = computeEdgeStyles();
       for (const edge of edges.get()) {
+        let width = 1.2;
+        let dashes = false;
+        let color = '#3b4261';
+
+        if (boldEdges.has(edge.id)) {
+          width = 2.5;
+          color = '#7aa2f7';
+        } else if (dashedEdges.has(edge.id)) {
+          width = 2;
+          dashes = true;
+          color = '#7aa2f7';
+        }
+
         edges.update({
           id: edge.id,
-          color: { color: '#3b4261', highlight: '#7aa2f7' },
-          width: 1.2,
-          dashes: false,
+          color: { color, highlight: '#7aa2f7' },
+          width,
+          dashes,
         });
       }
       return;
