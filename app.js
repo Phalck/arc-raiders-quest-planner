@@ -30,6 +30,7 @@
     'The Blue Gate': '#bb9af7',
   };
   const COLUMN_WIDTH = 280;
+  const COLUMN_GAP = 100;
   const LEVEL_HEIGHT = 100;
   const SIBLING_OFFSET = 30;
 
@@ -139,7 +140,7 @@
       const siblings = (byMap[map] && byMap[map][depth]) || [q.id];
       const sibIdx = siblings.indexOf(q.id);
       const totalSibs = siblings.length;
-      const colStart = colIdx * COLUMN_WIDTH;
+      const colStart = colIdx * (COLUMN_WIDTH + COLUMN_GAP);
       const padding = 10;
       const usable = COLUMN_WIDTH - 2 * padding;
       const x = totalSibs > 1
