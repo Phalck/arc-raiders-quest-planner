@@ -767,16 +767,26 @@
   }
 
   function wireUI() {
-    document.querySelectorAll('.nav-btn[data-mode]').forEach(btn => {
-      btn.addEventListener('click', function () {
-        document.querySelectorAll('.nav-btn[data-mode]').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        document.getElementById('coinSelect').value = '';
-        document.getElementById('blueprintSelect').value = '';
-        currentPathQuest = null;
-        currentPathType = null;
-        applyMode(this.dataset.mode);
-      });
+    document.getElementById('resetTrackerBtn').addEventListener('click', function () {
+      let changed = false;
+      for (const id of Object.keys(completedQuests)) {
+        if (completedQuests[id] === 'tracked') {
+          delete completedQuests[id];
+          changed = true;
+        }
+      }
+      if (changed) {
+        lset();
+        cloudSave();
+      }
+      document.getElementById('coinSelect').value = '';
+      document.getElementById('blueprintSelect').value = '';
+      currentPathQuest = null;
+      currentPathType = null;
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      applyMode('full');
+      renderTrackedPath();
     });
 
     locationFilter.addEventListener('change', function () {
@@ -797,19 +807,19 @@
     printBtn.addEventListener('click', generatePrint);
 
     document.getElementById('coinSelect').addEventListener('change', function () {
-      document.querySelector('.nav-btn[data-mode="full"]').classList.remove('active');
+      document.getElementById('resetTrackerBtn').classList.remove('active');
       currentPathQuest = this.value || null;
       currentPathType = this.value ? 'coins' : null;
-      if (!currentPathQuest) document.querySelector('.nav-btn[data-mode="full"]').classList.add('active');
+      if (!currentPathQuest) document.getElementById('resetTrackerBtn').classList.add('active');
       document.getElementById('blueprintSelect').value = '';
       applyOptimalPath();
     });
 
     document.getElementById('blueprintSelect').addEventListener('change', function () {
-      document.querySelector('.nav-btn[data-mode="full"]').classList.remove('active');
+      document.getElementById('resetTrackerBtn').classList.remove('active');
       currentPathQuest = this.value || null;
       currentPathType = this.value ? 'blueprints' : null;
-      if (!currentPathQuest) document.querySelector('.nav-btn[data-mode="full"]').classList.add('active');
+      if (!currentPathQuest) document.getElementById('resetTrackerBtn').classList.add('active');
       document.getElementById('coinSelect').value = '';
       applyOptimalPath();
     });
