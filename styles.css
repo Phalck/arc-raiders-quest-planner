@@ -109,7 +109,7 @@ body {
 .nav-btn:hover { border-color: var(--accent); color: var(--fg); }
 .nav-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
 
-.filter-group, .search-group {
+.filter-group {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -133,7 +133,6 @@ body {
   padding: 5px 10px;
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
-  width: 160px;
 }
 
 #searchInput::placeholder { color: var(--fg2); }
@@ -395,7 +394,6 @@ main {
   .left-panel { width: 100%; max-height: 40vh; border-right: none; border-bottom: 1px solid var(--border); }
   .nav-row { gap: 4px; }
   .nav-btn { font-size: 0.72rem; padding: 5px 8px; }
-  #searchInput { width: 120px; }
   .tracker-panel { max-height: 150px; }
   .header-top h1 { font-size: 0.95rem; }
   .legend { gap: 6px; font-size: 0.7rem; }
