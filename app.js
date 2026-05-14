@@ -340,7 +340,7 @@
     const scale = Math.max(0.5, (0.85 * containerWidth) / span);
     const centerX = (minX + maxX) / 2;
     const titleY = -72;
-    const viewY = titleY + (containerHeight / 2 - 15) / scale;
+    const viewY = titleY + (containerHeight / 2 - 50) / scale;
     network.moveTo({
       position: { x: centerX, y: viewY },
       scale,
