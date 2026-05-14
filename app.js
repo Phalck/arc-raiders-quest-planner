@@ -52,6 +52,8 @@
   let currentPathType = null;
   let completedQuests = {};
   let childrenOf = {};
+  let questDepths = {};
+  let panelHidden = false;
   let longPressTimer = null;
 
   const networkEl = document.getElementById('mynetwork');
@@ -115,6 +117,8 @@
       applyMode('full');
       applyFilters();
     }
+    panelHidden = false;
+    if (typeof renderTrackedPath === 'function') renderTrackedPath();
   };
 
   function computeNodeLayout() {
@@ -135,6 +139,8 @@
     for (const q of allQuests) {
       if (!visited.has(q.id)) depths[q.id] = maxDepth + 1;
     }
+
+    questDepths = depths;
 
     const byMap = {};
     for (const q of allQuests) {
@@ -258,6 +264,7 @@
       buildNetwork();
       loadingEl.style.display = 'none';
       wireUI();
+      renderTrackedPath();
       if (window.__arSupabase) window.__arSupabase.init();
     } catch (err) {
       loadingEl.textContent = 'Failed to load quest data: ' + err.message;
@@ -362,6 +369,7 @@
     } else {
       applyMode(currentMode);
     }
+    renderTrackedPath();
   }
 
   function canComplete(q) {
@@ -543,6 +551,81 @@
     }
   }
 
+  function renderTrackedPath() {
+    const sidebar = document.getElementById('pathSidebar');
+    const content = document.getElementById('psbContent');
+    const title = document.getElementById('psbQuestName');
+    const toggleBtn = document.getElementById('pathToggleBtn');
+
+    const tracked = allQuests.filter(q => completedQuests[q.id] === 'tracked');
+    const hasTracked = tracked.length > 0;
+
+    toggleBtn.classList.toggle('hidden', !hasTracked);
+    toggleBtn.classList.toggle('active', hasTracked && !panelHidden);
+
+    if (!hasTracked) {
+      sidebar.classList.add('hidden');
+      panelHidden = false;
+      return;
+    }
+
+    if (panelHidden) {
+      sidebar.classList.add('hidden');
+      return;
+    }
+
+    const pathIds = new Set();
+    const visited = new Set();
+
+    function walkUp(questId) {
+      if (visited.has(questId)) return;
+      visited.add(questId);
+      pathIds.add(questId);
+      const q = questMap[questId];
+      if (!q) return;
+      for (const pid of q.previous) {
+        walkUp(pid);
+      }
+    }
+
+    for (const q of tracked) {
+      walkUp(q.id);
+    }
+
+    const sorted = [...pathIds].sort((a, b) => {
+      return (questDepths[a] ?? 0) - (questDepths[b] ?? 0);
+    });
+
+    const names = tracked.map(q => q.name);
+    title.textContent = names.length === 1 ? names[0] : names.join(', ');
+
+    let html = '';
+    for (const id of sorted) {
+      const q = questMap[id];
+      if (!q) continue;
+      const state = completedQuests[id];
+      const isDone = state === 'completed' || state === true;
+      const isTracked = state === 'tracked';
+      const checked = isDone ? '✓' : '';
+      const cbClass = isDone ? 'psb-cb checked' : isTracked ? 'psb-cb tracked' : 'psb-cb';
+      const map = getPrimaryMap(q.location);
+      html += '<div class="psb-item" data-id="' + id + '">'
+        + '<span class="' + cbClass + '">' + checked + '</span>'
+        + '<div class="psb-item-text">'
+        + '<div class="psb-name">' + q.name + '</div>'
+        + '<div class="psb-map">' + map + '</div>'
+        + '</div></div>';
+    }
+    content.innerHTML = html;
+    sidebar.classList.remove('hidden');
+
+    for (const el of content.querySelectorAll('.psb-item')) {
+      el.addEventListener('click', function () {
+        toggleQuest(this.dataset.id);
+      });
+    }
+  }
+
   function showDetail(id) {
     const q = questMap[id];
     if (!q) return;
@@ -672,6 +755,8 @@
     currentPathType = null;
     document.getElementById('coinSelect').value = '';
     document.getElementById('blueprintSelect').value = '';
+    panelHidden = false;
+    renderTrackedPath();
     applyMode('full');
   }
 
@@ -729,6 +814,17 @@
 
     menuToggle.addEventListener('click', function () {
       mainNav.classList.toggle('collapsed');
+    });
+
+    document.getElementById('psbCloseBtn').addEventListener('click', function () {
+      panelHidden = true;
+      document.getElementById('pathSidebar').classList.add('hidden');
+      document.getElementById('pathToggleBtn').classList.remove('active');
+    });
+
+    document.getElementById('pathToggleBtn').addEventListener('click', function () {
+      panelHidden = !panelHidden;
+      renderTrackedPath();
     });
 
     document.getElementById('coinSelect').addEventListener('change', function () {

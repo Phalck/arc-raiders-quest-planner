@@ -162,10 +162,119 @@ header {
 .legend-item .swatch.state-tracked { background: #d7a83e; border-radius: 0; width: 8px; height: 8px; }
 .legend-item .swatch.state-done { background: #4a8a4a; border-radius: 0; width: 8px; height: 8px; }
 
-.network-container {
+.network-area {
+  display: flex;
   flex: 1;
   min-height: 500px;
   height: calc(100vh - 190px);
+  overflow: hidden;
+}
+
+.network-container {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+.path-sidebar {
+  width: 280px;
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.path-sidebar.hidden { display: none; }
+
+.psb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 12px 0;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.psb-header h3 {
+  font-size: 0.85rem;
+  color: var(--fg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.psb-close-btn {
+  background: none;
+  border: none;
+  color: var(--fg2);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.psb-close-btn:hover { color: var(--fg); background: var(--bg); }
+
+.psb-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 12px 12px;
+}
+
+.psb-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 4px;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.psb-item:hover { background: var(--bg); }
+.psb-item:last-child { border-bottom: none; }
+
+.psb-cb {
+  min-width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-top: 1px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: var(--bg);
+  transition: all 0.15s;
+}
+.psb-cb.checked {
+  background: var(--green);
+  border-color: var(--green);
+  color: #1a1b26;
+}
+.psb-cb.tracked {
+  border-color: var(--yellow);
+}
+
+.psb-item-text { flex: 1; min-width: 0; }
+
+.psb-name {
+  font-weight: 600;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.psb-map {
+  color: var(--fg2);
+  font-size: 0.75rem;
+  margin-top: 1px;
+}
+
+.path-toggle-btn.active {
+  background: var(--accent);
+  color: var(--bg);
 }
 
 /* Quest detail panel */
@@ -224,7 +333,7 @@ header {
 
 @media print {
   body, html { background: white; color: black; font-size: 11pt; }
-  header, #mynetwork, .legend, #questDetail, .loading, .menu-btn { display: none !important; }
+  header, #mynetwork, .legend, #questDetail, .loading, .menu-btn, #pathSidebar, #networkArea { display: none !important; }
   .print-view {
     display: block !important;
     position: static;
@@ -287,7 +396,9 @@ header {
   .nav-row { gap: 4px; }
   .nav-btn { font-size: 0.72rem; padding: 5px 8px; }
   #searchInput { width: 120px; }
-  .network-container { height: calc(100vh - 180px); min-height: 350px; }
+  .network-area { height: calc(100vh - 180px); min-height: 350px; }
+  .path-sidebar { display: none !important; }
+  .path-toggle-btn { display: none !important; }
   .header-top h1 { font-size: 0.95rem; }
   .legend { gap: 6px; font-size: 0.7rem; }
 }
