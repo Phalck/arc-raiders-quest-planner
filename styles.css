@@ -406,7 +406,7 @@ main {
 }
 
 /* Auth */
-.auth-area { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.auth-area { display: flex; align-items: center; gap: 6px; }
 .auth-user { font-size: 0.75rem; color: var(--fg2); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .modal {
