@@ -328,7 +328,21 @@
       }
     });
 
-    network.fit({ animation: { duration: 300 } });
+    const allN = nodes.get();
+    let minX = Infinity, maxX = -Infinity;
+    for (const n of allN) {
+      if (n.x < minX) minX = n.x;
+      if (n.x > maxX) maxX = n.x;
+    }
+    const span = maxX - minX || 1;
+    const containerWidth = networkEl.clientWidth;
+    const scale = Math.max(0.5, (0.85 * containerWidth) / span);
+    const centerX = (minX + maxX) / 2;
+    network.moveTo({
+      position: { x: centerX, y: 0 },
+      scale,
+      animation: { duration: 300 },
+    });
   }
 
   function toggleQuest(id) {
