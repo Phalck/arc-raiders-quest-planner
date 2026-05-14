@@ -29,6 +29,15 @@
     'Dam Battlegrounds': '#f7768e',
     'The Blue Gate': '#bb9af7',
   };
+  const COLUMN_BG = {
+    'Any': 'rgba(86,95,137,0.10)',
+    'Riven Tides': 'rgba(125,207,255,0.10)',
+    'Stella Montis': 'rgba(158,206,106,0.10)',
+    'Spaceport': 'rgba(255,158,100,0.10)',
+    'Buried City': 'rgba(224,175,104,0.10)',
+    'Dam Battlegrounds': 'rgba(247,118,142,0.10)',
+    'The Blue Gate': 'rgba(187,154,247,0.10)',
+  };
   const COLUMN_WIDTH = 280;
   const COLUMN_GAP = 100;
   const LEVEL_HEIGHT = 100;
@@ -288,6 +297,17 @@
     network.on('doubleClick', function (params) {
       if (params.nodes.length > 0) {
         showDetail(params.nodes[0]);
+      }
+    });
+
+    network.on('beforeDrawing', function (ctx) {
+      const height = 10000;
+      for (let i = 0; i < MAP_ORDER.length; i++) {
+        const x = i * (COLUMN_WIDTH + COLUMN_GAP);
+        ctx.save();
+        ctx.fillStyle = COLUMN_BG[MAP_ORDER[i]];
+        ctx.fillRect(x, -500, COLUMN_WIDTH, height);
+        ctx.restore();
       }
     });
 
