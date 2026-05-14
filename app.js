@@ -482,7 +482,7 @@
       const q = questMap[entry.quest];
       const opt = document.createElement('option');
       opt.value = entry.quest;
-      opt.textContent = (q?.name || entry.quest) + ' \u2014 ' + Number(entry.coins).toLocaleString() + ' Coins';
+      opt.textContent = Number(entry.coins).toLocaleString() + ' Coins';
       coinSelect.appendChild(opt);
     }
     const bpSelect = document.getElementById('blueprintSelect');

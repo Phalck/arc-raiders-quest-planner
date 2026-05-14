@@ -14,13 +14,10 @@
 <aside class="left-panel">
   <div class="header-top">
     <h1>Arc Raiders — Quest Planner</h1>
-    <div class="header-right">
-      <div id="userInfo" class="user-info"></div>
-    </div>
+    <div id="userInfo" class="user-info"></div>
   </div>
   <nav id="mainNav" class="nav-bar">
     <div class="nav-row">
-      <button class="nav-btn active" data-mode="full">Full Tree</button>
       <div class="filter-group">
         <label for="coinSelect">Coins:</label>
         <select id="coinSelect"><option value="">—</option></select>
@@ -58,6 +55,7 @@
         <input type="text" id="searchInput" placeholder="Search quests..." autocomplete="off">
       </div>
       <div class="nav-right">
+        <button class="nav-btn active" data-mode="full">Full Tree</button>
         <button id="printBtn" class="nav-btn print-btn" title="Printable checklist">🖨 Print</button>
         <button id="settingsBtn" class="nav-btn" title="Settings">⚙</button>
         <div id="authArea" class="auth-area"></div>

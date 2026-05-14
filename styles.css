@@ -38,16 +38,18 @@ body {
 }
 
 .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
+  padding: 10px 16px 6px;
 }
 
 .header-top h1 {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--accent);
+  margin-bottom: 3px;
+}
+
+.header-top .user-info {
+  justify-content: flex-start;
 }
 
 .header-right {
@@ -97,13 +99,14 @@ body {
 
 .filter-group label { font-size: 0.75rem; color: var(--fg2); }
 
-#locationFilter, #traderFilter {
+#locationFilter, #traderFilter, #coinSelect, #blueprintSelect {
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--fg);
   padding: 4px 8px;
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
+  width: 110px;
 }
 
 #searchInput {
