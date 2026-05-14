@@ -30,8 +30,7 @@
       if (userInfoEl) {
         userInfoEl.innerHTML = `<span class="auth-user">${currentUser.email}</span>`;
       }
-      authEl.innerHTML = `<button id="signOutBtn" class="nav-btn">Sign Out</button>`;
-      document.getElementById('signOutBtn').addEventListener('click', signOut);
+      authEl.innerHTML = '';
     } else {
       if (userInfoEl) userInfoEl.innerHTML = '';
       authEl.innerHTML = `<button id="signInBtn" class="nav-btn auth-btn">Sign In</button>`;
@@ -217,6 +216,7 @@
     init,
     saveProgress,
     loadProgress,
+    signOut,
     deleteAccount,
     get user() { return currentUser; },
   };

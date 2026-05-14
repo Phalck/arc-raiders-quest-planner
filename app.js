@@ -850,6 +850,11 @@
       closeSettings();
     });
 
+    document.getElementById('signOutBtn').addEventListener('click', async function () {
+      if (window.__arSupabase) await window.__arSupabase.signOut();
+      closeSettings();
+    });
+
     document.getElementById('deleteAccountBtn').addEventListener('click', async function () {
       if (this.textContent !== 'Confirm? Delete Forever') {
         this.textContent = 'Confirm? Delete Forever';
