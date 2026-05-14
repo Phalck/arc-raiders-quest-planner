@@ -31,7 +31,8 @@
   };
   const COLUMN_WIDTH = 280;
   const LEVEL_HEIGHT = 100;
-  const SIBLING_OFFSET = 30;
+  const SIBLING_HORIZONTAL_OFFSET = 15;
+  const SIBLING_VERTICAL_OFFSET = 40;
 
   let questData, allQuests, questMap;
   let network, nodes, edges;
@@ -139,8 +140,9 @@
       const siblings = (byMap[map] && byMap[map][depth]) || [q.id];
       const sibIdx = siblings.indexOf(q.id);
       const totalSibs = siblings.length;
-      const x = colIdx * COLUMN_WIDTH + COLUMN_WIDTH / 2 + (sibIdx - (totalSibs - 1) / 2) * SIBLING_OFFSET;
-      const y = depth * LEVEL_HEIGHT + 50;
+      const center = (totalSibs - 1) / 2;
+      const x = colIdx * COLUMN_WIDTH + COLUMN_WIDTH / 2 + (sibIdx - center) * SIBLING_HORIZONTAL_OFFSET;
+      const y = depth * LEVEL_HEIGHT + 50 + (sibIdx - center) * SIBLING_VERTICAL_OFFSET;
       positions[q.id] = { x, y };
     }
     return positions;
