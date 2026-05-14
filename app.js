@@ -19,10 +19,25 @@
   };
   const ROOT_QUEST = 'picking_up_the_pieces';
 
+  const MAP_ORDER = ['Any', 'Riven Tides', 'Stella Montis', 'Spaceport', 'Buried City', 'Dam Battlegrounds', 'The Blue Gate'];
+  const MAP_COLORS = {
+    'Any': '#565f89',
+    'Riven Tides': '#7dcfff',
+    'Stella Montis': '#9ece6a',
+    'Spaceport': '#ff9e64',
+    'Buried City': '#e0af68',
+    'Dam Battlegrounds': '#f7768e',
+    'The Blue Gate': '#bb9af7',
+  };
+  const COLUMN_WIDTH = 280;
+  const LEVEL_HEIGHT = 100;
+  const SIBLING_OFFSET = 30;
+
   let questData, allQuests, questMap;
   let network, nodes, edges;
   let currentMode = 'full';
   let currentTrader = 'all';
+  let currentLocation = 'all';
   let currentSearch = '';
   let completedQuests = {};
   let childrenOf = {};
@@ -31,6 +46,7 @@
   const networkEl = document.getElementById('mynetwork');
   const loadingEl = document.getElementById('loading');
   const detailEl = document.getElementById('questDetail');
+  const locationFilter = document.getElementById('locationFilter');
   const traderFilter = document.getElementById('traderFilter');
   const searchInput = document.getElementById('searchInput');
   const printBtn = document.getElementById('printBtn');
@@ -58,6 +74,10 @@
     return '';
   }
 
+  function getPrimaryMap(location) {
+    return location.split(';')[0].trim();
+  }
+
   function buildNodeLabel(q, state, prefix) {
     let label = prefix + q.name;
     for (const r of q.rewards) {
@@ -82,21 +102,71 @@
     }
   };
 
-  function makeNodes(allQuests) {
+  function computeNodeLayout() {
+    const depths = {};
+    const queue = [{ id: ROOT_QUEST, depth: 0 }];
+    const visited = new Set();
+    while (queue.length) {
+      const { id, depth } = queue.shift();
+      if (visited.has(id)) continue;
+      visited.add(id);
+      depths[id] = depth;
+      const kids = childrenOf[id];
+      if (kids) {
+        for (const kidId of kids) queue.push({ id: kidId, depth: depth + 1 });
+      }
+    }
+    const maxDepth = Object.values(depths).length ? Math.max(...Object.values(depths)) : 0;
+    for (const q of allQuests) {
+      if (!visited.has(q.id)) depths[q.id] = maxDepth + 1;
+    }
+
+    const byMap = {};
+    for (const q of allQuests) {
+      const map = getPrimaryMap(q.location);
+      const depth = depths[q.id];
+      if (!byMap[map]) byMap[map] = {};
+      if (!byMap[map][depth]) byMap[map][depth] = [];
+      byMap[map][depth].push(q.id);
+    }
+
+    const positions = {};
+    for (const q of allQuests) {
+      const map = getPrimaryMap(q.location);
+      let colIdx = MAP_ORDER.indexOf(map);
+      if (colIdx === -1) colIdx = MAP_ORDER.indexOf('Any');
+      const depth = depths[q.id];
+      const siblings = (byMap[map] && byMap[map][depth]) || [q.id];
+      const sibIdx = siblings.indexOf(q.id);
+      const totalSibs = siblings.length;
+      const x = colIdx * COLUMN_WIDTH + COLUMN_WIDTH / 2 + (sibIdx - (totalSibs - 1) / 2) * SIBLING_OFFSET;
+      const y = depth * LEVEL_HEIGHT + 50;
+      positions[q.id] = { x, y };
+    }
+    return positions;
+  }
+
+  function makeNodes(allQuests, positions) {
     const arr = [];
     for (const q of allQuests) {
+      const pos = positions[q.id];
       const state = completedQuests[q.id] || null;
       const base = UNIFORM;
       const stateClr = getStateStyle(state, false);
       const prefix = stateClr ? stateClr.prefix : '';
+      const map = getPrimaryMap(q.location);
+      const mapColor = MAP_COLORS[map] || MAP_COLORS['Any'];
       arr.push({
         id: q.id,
         label: buildNodeLabel(q, state, prefix),
         shape: 'box',
+        x: pos.x,
+        y: pos.y,
+        fixed: { x: true, y: true },
         color: {
           background: stateClr ? stateClr.bg : base.bg,
-          border: stateClr ? stateClr.border : base.border,
-          highlight: { background: base.bg, border: '#7aa2f7' },
+          border: stateClr ? stateClr.border : mapColor,
+          highlight: { background: base.bg, border: mapColor },
         },
         font: {
           color: stateClr ? stateClr.text : base.text,
@@ -146,6 +216,11 @@
       const res = await fetch('data/quests.json');
       questData = await res.json();
       allQuests = questData.quests;
+      for (const q of allQuests) {
+        if (q.location.includes('Blue Gate') && !q.location.includes('The Blue Gate')) {
+          q.location = q.location.replace(/\bBlue Gate\b/g, 'The Blue Gate');
+        }
+      }
       questMap = {};
       childrenOf = {};
       for (const q of allQuests) {
@@ -167,23 +242,12 @@
   }
 
   function buildNetwork() {
-    nodes = makeNodes(allQuests);
+    const positions = computeNodeLayout();
+    nodes = makeNodes(allQuests, positions);
     edges = makeEdges(allQuests);
 
     const options = {
-      layout: {
-        hierarchical: {
-          enabled: true,
-          direction: 'UD',
-          sortMethod: 'directed',
-          levelSeparation: 100,
-          nodeSpacing: 130,
-          treeSpacing: 180,
-          blockShifting: true,
-          edgeMinimization: true,
-          parentCentralization: true,
-        },
-      },
+      layout: { hierarchical: false },
       interaction: {
         hover: true,
         tooltipStyle: 'background:#24283b;color:#c0caf5;border-radius:6px;padding:8px 10px;font-size:12px;',
@@ -199,9 +263,7 @@
       nodes: {
         shape: 'box', borderWidth: 1,
         widthConstraint: 200,
-        shadow: {
-          enabled: false,
-        },
+        shadow: { enabled: false },
       },
       groups: {},
     };
@@ -220,9 +282,7 @@
       }
     });
 
-    network.on('stabilized', function () {
-      network.fit({ animation: { duration: 300 } });
-    });
+    network.fit({ animation: { duration: 300 } });
   }
 
   function toggleQuest(id) {
@@ -348,13 +408,15 @@
         const state = completedQuests[node.id] || null;
         const stateClr = getStateStyle(state, false);
         const prefix = stateClr ? stateClr.prefix : '';
+        const map = getPrimaryMap(q.location);
+        const mapColor = MAP_COLORS[map] || MAP_COLORS['Any'];
         nodes.update({
           id: node.id,
           label: buildNodeLabel(q, state, prefix),
           color: {
             background: stateClr ? stateClr.bg : base.bg,
-            border: stateClr ? stateClr.border : base.border,
-            highlight: { background: base.bg, border: '#7aa2f7' },
+            border: stateClr ? stateClr.border : mapColor,
+            highlight: { background: base.bg, border: mapColor },
           },
           font: { color: stateClr ? stateClr.text : base.text, size: 12 },
           borderWidth: stateClr ? 2 : 1,
@@ -521,11 +583,16 @@
 
   function applyFilters() {
     const trader = currentTrader;
+    const location = currentLocation;
     const search = currentSearch;
     for (const node of nodes.get()) {
       const q = node.quest;
       let visible = true;
       if (trader !== 'all' && q?.trader !== trader) visible = false;
+      if (location !== 'all') {
+        const parts = q.location.split(';').map(s => s.trim());
+        if (!parts.includes(location)) visible = false;
+      }
       if (search && q && !q.name.toLowerCase().includes(search)) visible = false;
       nodes.update({ id: node.id, hidden: !visible });
     }
@@ -535,7 +602,7 @@
       const hidden = !f || !t || f.hidden || t.hidden;
       edges.update({ id: edge.id, hidden });
     }
-    if (trader !== 'all' || search) network.fit({ animation: true, padding: 20 });
+    if (trader !== 'all' || location !== 'all' || search) network.fit({ animation: true, padding: 20 });
   }
 
   function resetAllProgress() {
@@ -576,6 +643,11 @@
       });
     });
 
+    locationFilter.addEventListener('change', function () {
+      currentLocation = this.value;
+      applyFilters();
+    });
+
     traderFilter.addEventListener('change', function () {
       currentTrader = this.value;
       applyFilters();
@@ -592,11 +664,11 @@
       mainNav.classList.toggle('collapsed');
     });
 
-    document.querySelectorAll('.legend-item').forEach(item => {
+    document.querySelectorAll('.legend-item[data-map]').forEach(item => {
       item.addEventListener('click', function () {
-        const t = this.dataset.trader;
-        traderFilter.value = t === traderFilter.value ? 'all' : t;
-        traderFilter.dispatchEvent(new Event('change'));
+        const m = this.dataset.map;
+        locationFilter.value = m === locationFilter.value ? 'all' : m;
+        locationFilter.dispatchEvent(new Event('change'));
       });
     });
 

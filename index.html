@@ -28,6 +28,18 @@
     </div>
     <div class="nav-row">
       <div class="filter-group">
+        <label for="locationFilter">Map:</label>
+        <select id="locationFilter">
+          <option value="all">All</option>
+          <option value="Riven Tides">Riven Tides</option>
+          <option value="Stella Montis">Stella Montis</option>
+          <option value="Spaceport">Spaceport</option>
+          <option value="Buried City">Buried City</option>
+          <option value="Dam Battlegrounds">Dam Battlegrounds</option>
+          <option value="The Blue Gate">The Blue Gate</option>
+        </select>
+      </div>
+      <div class="filter-group">
         <label for="traderFilter">Trader:</label>
         <select id="traderFilter">
           <option value="all">All</option>
@@ -70,11 +82,12 @@
 <main>
   <div id="loading" class="loading">Loading quest data...</div>
   <div id="legend" class="legend">
-    <span class="legend-item" data-trader="shani"><span class="swatch"></span>Shani</span>
-    <span class="legend-item" data-trader="celeste"><span class="swatch"></span>Celeste</span>
-    <span class="legend-item" data-trader="tian_wen"><span class="swatch"></span>Tian Wen</span>
-    <span class="legend-item" data-trader="lance"><span class="swatch"></span>Lance</span>
-    <span class="legend-item" data-trader="apollo"><span class="swatch"></span>Apollo</span>
+    <span class="legend-item" data-map="Riven Tides"><span class="swatch"></span>Riven Tides</span>
+    <span class="legend-item" data-map="Stella Montis"><span class="swatch"></span>Stella Montis</span>
+    <span class="legend-item" data-map="Spaceport"><span class="swatch"></span>Spaceport</span>
+    <span class="legend-item" data-map="Buried City"><span class="swatch"></span>Buried City</span>
+    <span class="legend-item" data-map="Dam Battlegrounds"><span class="swatch"></span>Dam Battlegrounds</span>
+    <span class="legend-item" data-map="The Blue Gate"><span class="swatch"></span>The Blue Gate</span>
     <span class="legend-item" style="cursor:default"><span class="swatch state-tracked"></span>Tracked</span>
     <span class="legend-item" style="cursor:default"><span class="swatch state-done"></span>Done</span>
   </div>

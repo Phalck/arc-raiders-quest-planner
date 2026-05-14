@@ -104,7 +104,7 @@ header {
 
 .filter-group label { font-size: 0.75rem; color: var(--fg2); }
 
-#traderFilter {
+#locationFilter, #traderFilter {
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--fg);
@@ -153,11 +153,12 @@ header {
   width: 10px; height: 10px;
   border-radius: 50%;
 }
-.legend-item[data-trader="shani"] .swatch { background: #7dcfff; }
-.legend-item[data-trader="celeste"] .swatch { background: #9ece6a; }
-.legend-item[data-trader="tian_wen"] .swatch { background: #e0af68; }
-.legend-item[data-trader="lance"] .swatch { background: #bb9af7; }
-.legend-item[data-trader="apollo"] .swatch { background: #ff9e64; }
+.legend-item[data-map="Riven Tides"] .swatch { background: #7dcfff; }
+.legend-item[data-map="Stella Montis"] .swatch { background: #9ece6a; }
+.legend-item[data-map="Spaceport"] .swatch { background: #ff9e64; }
+.legend-item[data-map="Buried City"] .swatch { background: #e0af68; }
+.legend-item[data-map="Dam Battlegrounds"] .swatch { background: #f7768e; }
+.legend-item[data-map="The Blue Gate"] .swatch { background: #bb9af7; }
 .legend-item .swatch.state-tracked { background: #d7a83e; border-radius: 0; width: 8px; height: 8px; }
 .legend-item .swatch.state-done { background: #4a8a4a; border-radius: 0; width: 8px; height: 8px; }
 

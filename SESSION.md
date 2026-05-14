@@ -1,7 +1,7 @@
 # Session Memory — Arc Raiders Quest Planner
 
 Created: 13 May 2026
-Updated: 14 May 2026 (session 4)
+Updated: 14 May 2026 (session 5)
 
 ## What Was Built This Session
 
@@ -83,14 +83,48 @@ $$;
 | `app.js` | Added `resetAllProgress()`, `openSettings()`, `closeSettings()` functions; wired settings UI events (confirmation pattern, error display) |
 | `supabase.js` | Added `deleteAccount()` function calling `client.rpc('delete_user')` then sign out; exposed it on `window.__arSupabase` |
 
+---
+
+### 11. Layout Rewrite — Map Columns + Filter
+
+**Layout change**: Replaced vis-network hierarchical layout with a fully manual layout:
+- **Y positions**: BFS from root (`picking_up_the_pieces`) to compute dependency depth, each level = 100px
+- **X positions**: quests grouped into vertical columns by their primary map (first location in compound strings)
+- **Column order**: Any → Riven Tides → Stella Montis → Spaceport → Buried City → Dam Battlegrounds → The Blue Gate
+- **Sibling offset**: same-depth quests in the same map get a 30px horizontal offset within the column to avoid overlap
+- Orphan quests (not reachable from root) placed at max depth + 1
+- All nodes use `fixed: { x: true, y: true }` — no physics, no auto-layout
+
+**Map filter dropdown**: Added Map: `<select>` to the left of Trader in the nav bar. Compound locations match when any constituent map is selected. Legend swatches now filter by map (click a swatch → selects that map).
+
+**Map colors**: Each map gets its own border color replacing trader coloring:
+
+| Map | Color |
+|-----|-------|
+| Any | `#565f89` (gray) |
+| Riven Tides | `#7dcfff` (cyan) |
+| Stella Montis | `#9ece6a` (green) |
+| Spaceport | `#ff9e64` (orange) |
+| Buried City | `#e0af68` (yellow) |
+| Dam Battlegrounds | `#f7768e` (red) |
+| The Blue Gate | `#bb9af7` (purple) |
+
+**Data normalization**: "Blue Gate" → "The Blue Gate" in compound location strings (scraper artifact fix).
+
+### Files Changed (Session 5)
+| File | Changes |
+|------|---------|
+| `index.html` | Added `#locationFilter` select left of trader; replaced trader legend swatches with map swatches |
+| `styles.css` | Map swatch colors (`.legend-item[data-map="..."]`); `#locationFilter` shares `#traderFilter` style |
+| `app.js` | New `MAP_ORDER`, `MAP_COLORS`, `COLUMN_WIDTH`, `LEVEL_HEIGHT`, `SIBLING_OFFSET` constants; `getPrimaryMap()`; `computeNodeLayout()` with BFS depths + column grouping; `makeNodes()` now takes positions and sets `x`/`y`/`fixed`; `buildNetwork()` uses manual layout; `applyFilters()` checks map; `applyMode('full')` uses map colors; legend clicks filter by `data-map`; "Blue Gate" normalization in `init()` |
+
 ## Next Action (start here next session)
 
 Continue from anywhere on the roadmap below:
 
 1. **"Next 5" print ticket** — Scan forward from last completed quest, print next 5 uncompleted missions as a tick-box checklist with required items
 2. **Progress statistics counter** — e.g. "12/100 completed" in header
-3. **Filter by map/location** — Location dropdown alongside Trader filter
-4. **Auto wiki scraper** — GitHub Actions cron + PR on data change
+3. **Auto wiki scraper** — GitHub Actions cron + PR on data change
 
 ## Tech Stack
 
