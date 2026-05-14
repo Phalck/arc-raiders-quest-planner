@@ -137,7 +137,7 @@ body {
 
 #searchInput::placeholder { color: var(--fg2); }
 
-.nav-right { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.nav-right { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
 
 .loading {
   text-align: center;
