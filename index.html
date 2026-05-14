@@ -40,6 +40,7 @@
       </div>
       <div id="authArea" class="auth-area"></div>
       <button id="printBtn" class="nav-btn print-btn" title="Printable checklist">🖨 Print</button>
+      <button id="settingsBtn" class="nav-btn" title="Settings">⚙</button>
     </div>
   </nav>
 </header>
@@ -82,6 +83,25 @@
     <p>Generated: <span id="printDate"></span></p>
   </div>
   <div id="printContent"></div>
+</div>
+
+<div id="settingsModal" class="modal hidden">
+  <div class="modal-overlay"></div>
+  <div class="modal-content settings-content">
+    <button id="settingsModalClose" class="modal-close">✕</button>
+    <h2>Settings</h2>
+    <div class="settings-section">
+      <h3>Progress</h3>
+      <p class="settings-desc">Reset all quest progress locally and in the cloud.</p>
+      <button id="resetProgressBtn" class="modal-btn danger-btn">Reset All Progress</button>
+    </div>
+    <div class="settings-section hidden" id="deleteAccountSection">
+      <h3>Account</h3>
+      <p class="settings-desc">Permanently delete your account and all saved data.</p>
+      <button id="deleteAccountBtn" class="modal-btn danger-btn">Delete Account &amp; Data</button>
+    </div>
+    <div id="settingsError" class="settings-error hidden"></div>
+  </div>
 </div>
 
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>

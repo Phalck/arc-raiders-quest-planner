@@ -170,6 +170,18 @@
     }, 500);
   }
 
+  async function deleteAccount() {
+    if (!currentUser) return;
+    try {
+      const { error } = await client.rpc('delete_user');
+      if (error) throw error;
+      await client.auth.signOut();
+    } catch (err) {
+      console.warn('Account deletion failed:', err.message);
+      throw err;
+    }
+  }
+
   async function init() {
     const { data: { session } } = await client.auth.getSession();
     if (session?.user) {
@@ -203,6 +215,7 @@
     init,
     saveProgress,
     loadProgress,
+    deleteAccount,
     get user() { return currentUser; },
   };
 })();

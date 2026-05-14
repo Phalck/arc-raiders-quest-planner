@@ -1,7 +1,7 @@
 # Session Memory — Arc Raiders Quest Planner
 
 Created: 13 May 2026
-Updated: 14 May 2026 (session 3)
+Updated: 14 May 2026 (session 4)
 
 ## What Was Built This Session
 
@@ -50,16 +50,47 @@ Updated: 14 May 2026 (session 3)
 | `toggleQuest(id)` | 3-state cycle with progression gate + cascade + `applyMode` refresh |
 | `applyMode(mode)` | Full mode: uniform + tracked-edge viz. Path modes: highlight highlightColor |
 
+## What Was Built This Session
+
+### 9. Settings / Admin Page
+- **Settings gear button** (⚙) in the nav bar next to Print
+- **Settings modal** with two sections:
+  - **Reset All Progress** — clears all quest states locally and in the cloud, refreshes the tree. Two-step confirmation with 4s timeout.
+  - **Delete Account & Data** (only visible when signed in) — two-step confirmation, then deletes the user's `user_progress` row and `auth.users` record via a Supabase RPC (`delete_user()`), signs out, and resets local progress.
+
+### 10. Supabase Changes Needed
+- A new `delete_user()` RPC function must be created in the Supabase SQL editor:
+
+```sql
+CREATE OR REPLACE FUNCTION delete_user()
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  DELETE FROM public.user_progress WHERE user_id = auth.uid();
+  DELETE FROM auth.users WHERE id = auth.uid();
+END;
+$$;
+```
+
+### Files Changed
+| File | Changes |
+|------|---------|
+| `index.html` | Added ⚙ settings button in nav; added settings modal with progress reset + account delete sections |
+| `styles.css` | Added `.settings-content`, `.settings-section`, `.settings-desc`, `.danger-btn`, `.settings-error` styles |
+| `app.js` | Added `resetAllProgress()`, `openSettings()`, `closeSettings()` functions; wired settings UI events (confirmation pattern, error display) |
+| `supabase.js` | Added `deleteAccount()` function calling `client.rpc('delete_user')` then sign out; exposed it on `window.__arSupabase` |
+
 ## Next Action (start here next session)
 
-Continue from anywhere on the roadmap below. If continuing the "quest progression" theme,
-suggested next steps:
+Continue from anywhere on the roadmap below:
 
-1. **"Next 5" print ticket** — Scan forward from last completed quest, print next 5 uncompleted missions as a tick-box checklist with required items. Ideal for session planning now that Tracked/Completed flow is defined.
+1. **"Next 5" print ticket** — Scan forward from last completed quest, print next 5 uncompleted missions as a tick-box checklist with required items
 2. **Progress statistics counter** — e.g. "12/100 completed" in header
 3. **Filter by map/location** — Location dropdown alongside Trader filter
-4. **Settings/admin page** — clear progress, delete account
-5. **Auto wiki scraper** — GitHub Actions cron + PR on data change
+4. **Auto wiki scraper** — GitHub Actions cron + PR on data change
 
 ## Tech Stack
 

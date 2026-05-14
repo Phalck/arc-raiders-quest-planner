@@ -399,6 +399,17 @@ header {
   text-decoration: underline;
 }
 
+/* Settings modal */
+.settings-content { width: 380px; }
+.settings-section { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.settings-section h3 { font-size: 0.85rem; color: var(--fg); margin-bottom: 4px; }
+.settings-desc { font-size: 0.75rem; color: var(--fg2); margin-bottom: 10px; line-height: 1.4; }
+.danger-btn { background: var(--red); color: #fff; }
+.danger-btn:hover { opacity: 0.85; }
+.danger-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.settings-error { font-size: 0.8rem; color: var(--red); margin-top: 12px; text-align: center; }
+.settings-error.hidden { display: none; }
+
 @media print {
-  .modal, .auth-area { display: none !important; }
+  .modal, .auth-area, #settingsBtn { display: none !important; }
 }

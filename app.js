@@ -538,6 +538,35 @@
     if (trader !== 'all' || search) network.fit({ animation: true, padding: 20 });
   }
 
+  function resetAllProgress() {
+    completedQuests = {};
+    lset();
+    cloudSave();
+    applyMode(currentMode);
+  }
+
+  function openSettings() {
+    const modal = document.getElementById('settingsModal');
+    const deleteSection = document.getElementById('deleteAccountSection');
+    const errorEl = document.getElementById('settingsError');
+    errorEl.classList.add('hidden');
+    if (window.__arSupabase && window.__arSupabase.user) {
+      deleteSection.classList.remove('hidden');
+    } else {
+      deleteSection.classList.add('hidden');
+    }
+    modal.classList.remove('hidden');
+  }
+
+  function closeSettings() {
+    document.getElementById('settingsModal').classList.add('hidden');
+    document.getElementById('resetProgressBtn').disabled = false;
+    document.getElementById('resetProgressBtn').textContent = 'Reset All Progress';
+    document.getElementById('deleteAccountBtn').disabled = false;
+    document.getElementById('deleteAccountBtn').textContent = 'Delete Account & Data';
+    document.getElementById('settingsError').classList.add('hidden');
+  }
+
   function wireUI() {
     document.querySelectorAll('.nav-btn[data-mode]').forEach(btn => {
       btn.addEventListener('click', function () {
@@ -569,6 +598,46 @@
         traderFilter.value = t === traderFilter.value ? 'all' : t;
         traderFilter.dispatchEvent(new Event('change'));
       });
+    });
+
+    // Settings
+    document.getElementById('settingsBtn').addEventListener('click', openSettings);
+    document.getElementById('settingsModalClose').addEventListener('click', closeSettings);
+    document.getElementById('settingsModal').addEventListener('click', function (e) {
+      if (e.target === this) closeSettings();
+    });
+
+    document.getElementById('resetProgressBtn').addEventListener('click', function () {
+      if (this.textContent !== 'Confirm? Reset All') {
+        this.textContent = 'Confirm? Reset All';
+        this.disabled = false;
+        setTimeout(() => { if (this.textContent === 'Confirm? Reset All') { this.textContent = 'Reset All Progress'; } }, 4000);
+        return;
+      }
+      resetAllProgress();
+      closeSettings();
+    });
+
+    document.getElementById('deleteAccountBtn').addEventListener('click', async function () {
+      if (this.textContent !== 'Confirm? Delete Forever') {
+        this.textContent = 'Confirm? Delete Forever';
+        this.disabled = false;
+        setTimeout(() => { if (this.textContent === 'Confirm? Delete Forever') { this.textContent = 'Delete Account & Data'; } }, 4000);
+        return;
+      }
+      this.disabled = true;
+      this.textContent = 'Deleting...';
+      const errorEl = document.getElementById('settingsError');
+      try {
+        if (window.__arSupabase) await window.__arSupabase.deleteAccount();
+        resetAllProgress();
+        closeSettings();
+      } catch (err) {
+        errorEl.textContent = 'Failed to delete account: ' + err.message;
+        errorEl.classList.remove('hidden');
+        this.disabled = false;
+        this.textContent = 'Delete Account & Data';
+      }
     });
 
     document.addEventListener('click', function (e) {
