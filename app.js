@@ -314,7 +314,7 @@
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.fillStyle = MAP_COLORS[map];
-        ctx.fillText(map, cx, 36);
+        ctx.fillText(map, cx, -64);
         ctx.restore();
       }
     });
