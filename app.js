@@ -221,7 +221,7 @@
             arrows: { to: { enabled: true, scaleFactor: 0.6 } },
             color: { color: '#3b4261', highlight: '#7aa2f7' },
             width: 1.2,
-            smooth: { type: 'curvedCW', roundness: 0.1 },
+        smooth: { type: 'discrete', roundness: 0 },
           });
         }
       }
@@ -829,7 +829,14 @@
       currentPathType = this.value ? 'coins' : null;
       if (!currentPathQuest) document.getElementById('resetTrackerBtn').classList.add('active');
       document.getElementById('blueprintSelect').value = '';
+      for (const id of Object.keys(completedQuests)) {
+        if (completedQuests[id] === 'tracked') delete completedQuests[id];
+      }
+      if (this.value) completedQuests[this.value] = 'tracked';
+      lset();
+      cloudSave();
       applyOptimalPath();
+      renderTrackedPath();
     });
 
     document.getElementById('blueprintSelect').addEventListener('change', function () {
@@ -838,7 +845,14 @@
       currentPathType = this.value ? 'blueprints' : null;
       if (!currentPathQuest) document.getElementById('resetTrackerBtn').classList.add('active');
       document.getElementById('coinSelect').value = '';
+      for (const id of Object.keys(completedQuests)) {
+        if (completedQuests[id] === 'tracked') delete completedQuests[id];
+      }
+      if (this.value) completedQuests[this.value] = 'tracked';
+      lset();
+      cloudSave();
       applyOptimalPath();
+      renderTrackedPath();
     });
 
     document.querySelectorAll('.legend-item[data-map]').forEach(item => {
