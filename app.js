@@ -310,11 +310,11 @@
         ctx.fillRect(cx - COLUMN_WIDTH / 2, -500, COLUMN_WIDTH, height);
         ctx.restore();
         ctx.save();
-        ctx.font = 'bold 14px system-ui, sans-serif';
+        ctx.font = 'bold 28px system-ui, sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.fillStyle = MAP_COLORS[map];
-        ctx.fillText(map, cx, 46);
+        ctx.fillText(map, cx, 36);
         ctx.restore();
       }
     });
