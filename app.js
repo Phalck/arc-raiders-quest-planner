@@ -31,8 +31,7 @@
   };
   const COLUMN_WIDTH = 280;
   const LEVEL_HEIGHT = 100;
-  const SIBLING_HORIZONTAL_OFFSET = 15;
-  const SIBLING_VERTICAL_OFFSET = 40;
+  const SIBLING_OFFSET = 30;
 
   let questData, allQuests, questMap;
   let network, nodes, edges;
@@ -140,9 +139,13 @@
       const siblings = (byMap[map] && byMap[map][depth]) || [q.id];
       const sibIdx = siblings.indexOf(q.id);
       const totalSibs = siblings.length;
-      const center = (totalSibs - 1) / 2;
-      const x = colIdx * COLUMN_WIDTH + COLUMN_WIDTH / 2 + (sibIdx - center) * SIBLING_HORIZONTAL_OFFSET;
-      const y = depth * LEVEL_HEIGHT + 50 + (sibIdx - center) * SIBLING_VERTICAL_OFFSET;
+      const colStart = colIdx * COLUMN_WIDTH;
+      const padding = 10;
+      const usable = COLUMN_WIDTH - 2 * padding;
+      const x = totalSibs > 1
+        ? colStart + padding + sibIdx * (usable / (totalSibs - 1))
+        : colStart + COLUMN_WIDTH / 2;
+      const y = depth * LEVEL_HEIGHT + 50;
       positions[q.id] = { x, y };
     }
     return positions;
@@ -175,9 +178,11 @@
           size: 12,
           face: 'system-ui, sans-serif',
         },
+        widthConstraint: 100,
+        heightConstraint: { minimum: 85 },
         borderWidth: stateClr ? 2 : 1,
         borderWidthSelected: 2,
-        margin: { top: 8, bottom: 8, left: 10, right: 10 },
+        margin: { top: 4, bottom: 4, left: 6, right: 6 },
         quest: q,
         state: state,
         completed: state === 'completed',
@@ -264,7 +269,8 @@
       },
       nodes: {
         shape: 'box', borderWidth: 1,
-        widthConstraint: 200,
+        widthConstraint: 100,
+        heightConstraint: { minimum: 85 },
         shadow: { enabled: false },
       },
       groups: {},
