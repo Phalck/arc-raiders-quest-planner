@@ -336,10 +336,13 @@
     }
     const span = maxX - minX || 1;
     const containerWidth = networkEl.clientWidth;
+    const containerHeight = networkEl.clientHeight;
     const scale = Math.max(0.5, (0.85 * containerWidth) / span);
     const centerX = (minX + maxX) / 2;
+    const titleY = -72;
+    const viewY = titleY + (containerHeight / 2 - 15) / scale;
     network.moveTo({
-      position: { x: centerX, y: 0 },
+      position: { x: centerX, y: viewY },
       scale,
       animation: { duration: 300 },
     });
