@@ -303,10 +303,18 @@
     network.on('beforeDrawing', function (ctx) {
       const height = 10000;
       for (let i = 0; i < MAP_ORDER.length; i++) {
-        const x = i * (COLUMN_WIDTH + COLUMN_GAP);
+        const map = MAP_ORDER[i];
+        const cx = i * (COLUMN_WIDTH + COLUMN_GAP) + COLUMN_WIDTH / 2;
         ctx.save();
-        ctx.fillStyle = COLUMN_BG[MAP_ORDER[i]];
-        ctx.fillRect(x, -500, COLUMN_WIDTH, height);
+        ctx.fillStyle = COLUMN_BG[map];
+        ctx.fillRect(cx - COLUMN_WIDTH / 2, -500, COLUMN_WIDTH, height);
+        ctx.restore();
+        ctx.save();
+        ctx.font = 'bold 14px system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillStyle = MAP_COLORS[map];
+        ctx.fillText(map, cx, 46);
         ctx.restore();
       }
     });
