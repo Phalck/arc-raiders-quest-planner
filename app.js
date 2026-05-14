@@ -3,8 +3,7 @@
 
   const UNIFORM = { bg: '#2a2d3e', border: '#3b4261', text: '#c0caf5' };
   const UNIFORM_DIM = { bg: '#1a1a2a', border: '#2a2a3a', text: '#5a5a7a' };
-  const MODE_HIGHLIGHT = {
-    hullcracker: '#7aa2f7',
+  const PATH_HIGHLIGHT = {
     coins: '#e0af68',
     blueprints: '#bb9af7',
   };
@@ -49,6 +48,8 @@
   let currentTrader = 'all';
   let currentLocation = 'all';
   let currentSearch = '';
+  let currentPathQuest = null;
+  let currentPathType = null;
   let completedQuests = {};
   let childrenOf = {};
   let longPressTimer = null;
@@ -106,8 +107,12 @@
   window.__arLoadProgress = function (cloudProgress) {
     completedQuests = cloudProgress || {};
     lset();
+    currentPathQuest = null;
+    currentPathType = null;
+    document.getElementById('coinSelect').value = '';
+    document.getElementById('blueprintSelect').value = '';
     if (typeof applyMode === 'function') {
-      applyMode(currentMode);
+      applyMode('full');
       applyFilters();
     }
   };
@@ -248,6 +253,7 @@
         }
       }
 
+      populatePathDropdowns();
       loadingEl.textContent = 'Building quest tree...';
       buildNetwork();
       loadingEl.style.display = 'none';
@@ -351,30 +357,11 @@
 
     lset();
     cloudSave();
-    applyMode(currentMode);
-  }
-
-  function isOnActivePath(q) {
-    if (currentMode === 'full') return true;
-    const pathIds = getPathIds();
-    return pathIds.has(q.id);
-  }
-
-  function getPathIds() {
-    const set = new Set();
-    if (currentMode === 'hullcracker') {
-      const hp = questData.paths.hullcracker;
-      if (hp) for (const id of hp.path) set.add(id);
-    } else if (currentMode === 'coins') {
-      for (const q of allQuests) {
-        if (q.rewards.some(r => r.type === 'coins')) set.add(q.id);
-      }
-    } else if (currentMode === 'blueprints') {
-      for (const q of allQuests) {
-        if (q.rewards.some(r => r.type === 'blueprint')) set.add(q.id);
-      }
+    if (currentPathQuest) {
+      applyOptimalPath();
+    } else {
+      applyMode(currentMode);
     }
-    return set;
   }
 
   function canComplete(q) {
@@ -482,12 +469,47 @@
           dashes,
         });
       }
+    }
+  }
+
+  function populatePathDropdowns() {
+    const coinSelect = document.getElementById('coinSelect');
+    for (const entry of questData.paths.coins) {
+      const q = questMap[entry.quest];
+      const opt = document.createElement('option');
+      opt.value = entry.quest;
+      opt.textContent = (q?.name || entry.quest) + ' \u2014 ' + Number(entry.coins).toLocaleString() + ' Coins';
+      coinSelect.appendChild(opt);
+    }
+    const bpSelect = document.getElementById('blueprintSelect');
+    for (const entry of questData.paths.blueprints) {
+      const opt = document.createElement('option');
+      opt.value = entry.quest;
+      opt.textContent = entry.blueprints.join(', ');
+      bpSelect.appendChild(opt);
+    }
+  }
+
+  function applyOptimalPath() {
+    if (!currentPathQuest || !currentPathType) {
+      applyMode('full');
       return;
     }
 
-    const pathIds = getPathIds();
+    let path = null;
+    const highlightColor = PATH_HIGHLIGHT[currentPathType] || '#7aa2f7';
 
-    const highlightColor = MODE_HIGHLIGHT[currentMode] || '#7aa2f7';
+    if (currentPathType === 'coins') {
+      const entry = questData.paths.coins.find(c => c.quest === currentPathQuest);
+      if (entry) path = entry.path;
+    } else if (currentPathType === 'blueprints') {
+      const entry = questData.paths.blueprints.find(b => b.quest === currentPathQuest);
+      if (entry) path = entry.path;
+    }
+
+    if (!path) { applyMode('full'); return; }
+
+    const pathIds = new Set(path);
 
     for (const node of nodes.get()) {
       const onPath = pathIds.has(node.id);
@@ -646,7 +668,11 @@
     completedQuests = {};
     lset();
     cloudSave();
-    applyMode(currentMode);
+    currentPathQuest = null;
+    currentPathType = null;
+    document.getElementById('coinSelect').value = '';
+    document.getElementById('blueprintSelect').value = '';
+    applyMode('full');
   }
 
   function openSettings() {
@@ -676,6 +702,10 @@
       btn.addEventListener('click', function () {
         document.querySelectorAll('.nav-btn[data-mode]').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
+        document.getElementById('coinSelect').value = '';
+        document.getElementById('blueprintSelect').value = '';
+        currentPathQuest = null;
+        currentPathType = null;
         applyMode(this.dataset.mode);
       });
     });
@@ -699,6 +729,24 @@
 
     menuToggle.addEventListener('click', function () {
       mainNav.classList.toggle('collapsed');
+    });
+
+    document.getElementById('coinSelect').addEventListener('change', function () {
+      document.querySelector('.nav-btn[data-mode="full"]').classList.remove('active');
+      currentPathQuest = this.value || null;
+      currentPathType = this.value ? 'coins' : null;
+      if (!currentPathQuest) document.querySelector('.nav-btn[data-mode="full"]').classList.add('active');
+      document.getElementById('blueprintSelect').value = '';
+      applyOptimalPath();
+    });
+
+    document.getElementById('blueprintSelect').addEventListener('change', function () {
+      document.querySelector('.nav-btn[data-mode="full"]').classList.remove('active');
+      currentPathQuest = this.value || null;
+      currentPathType = this.value ? 'blueprints' : null;
+      if (!currentPathQuest) document.querySelector('.nav-btn[data-mode="full"]').classList.add('active');
+      document.getElementById('coinSelect').value = '';
+      applyOptimalPath();
     });
 
     document.querySelectorAll('.legend-item[data-map]').forEach(item => {

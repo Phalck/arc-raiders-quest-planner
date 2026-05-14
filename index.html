@@ -22,9 +22,18 @@
   <nav id="mainNav" class="nav-bar">
     <div class="nav-row">
       <button class="nav-btn active" data-mode="full">Full Tree</button>
-      <button class="nav-btn" data-mode="hullcracker">Hullcracker</button>
-      <button class="nav-btn" data-mode="coins">Coins</button>
-      <button class="nav-btn" data-mode="blueprints">Blueprints</button>
+      <div class="filter-group">
+        <label for="coinSelect">Coins:</label>
+        <select id="coinSelect">
+          <option value="">—</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="blueprintSelect">Blueprints:</label>
+        <select id="blueprintSelect">
+          <option value="">—</option>
+        </select>
+      </div>
     </div>
     <div class="nav-row">
       <div class="filter-group">
