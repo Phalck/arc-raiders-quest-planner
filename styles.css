@@ -68,6 +68,24 @@ body {
   padding: 0 16px 10px;
 }
 
+.filter-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.filter-grid label {
+  font-size: 0.75rem;
+  color: var(--fg2);
+  text-align: right;
+}
+
+.filter-grid select {
+  width: 100%;
+}
+
 .nav-row {
   display: flex;
   gap: 6px;
@@ -106,7 +124,6 @@ body {
   padding: 4px 8px;
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
-  width: 110px;
 }
 
 #searchInput {

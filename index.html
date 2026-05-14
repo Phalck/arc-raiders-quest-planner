@@ -17,40 +17,31 @@
     <div id="userInfo" class="user-info"></div>
   </div>
   <nav id="mainNav" class="nav-bar">
-    <div class="nav-row">
-      <div class="filter-group">
-        <label for="coinSelect">Coins:</label>
-        <select id="coinSelect"><option value="">—</option></select>
-      </div>
-      <div class="filter-group">
-        <label for="blueprintSelect">Blueprints:</label>
-        <select id="blueprintSelect"><option value="">—</option></select>
-      </div>
+    <div class="filter-grid">
+      <label for="coinSelect">Coins:</label>
+      <select id="coinSelect"><option value="">—</option></select>
+      <label for="blueprintSelect">Blueprints:</label>
+      <select id="blueprintSelect"><option value="">—</option></select>
+      <label for="locationFilter">Map:</label>
+      <select id="locationFilter">
+        <option value="all">All</option>
+        <option value="Riven Tides">Riven Tides</option>
+        <option value="Stella Montis">Stella Montis</option>
+        <option value="Spaceport">Spaceport</option>
+        <option value="Buried City">Buried City</option>
+        <option value="Dam Battlegrounds">Dam Battlegrounds</option>
+        <option value="The Blue Gate">The Blue Gate</option>
+      </select>
+      <label for="traderFilter">Trader:</label>
+      <select id="traderFilter">
+        <option value="all">All</option>
+        <option value="shani">Shani</option>
+        <option value="celeste">Celeste</option>
+        <option value="tian_wen">Tian Wen</option>
+        <option value="lance">Lance</option>
+        <option value="apollo">Apollo</option>
+      </select>
     </div>
-    <div class="nav-row">
-      <div class="filter-group">
-        <label for="locationFilter">Map:</label>
-        <select id="locationFilter">
-          <option value="all">All</option>
-          <option value="Riven Tides">Riven Tides</option>
-          <option value="Stella Montis">Stella Montis</option>
-          <option value="Spaceport">Spaceport</option>
-          <option value="Buried City">Buried City</option>
-          <option value="Dam Battlegrounds">Dam Battlegrounds</option>
-          <option value="The Blue Gate">The Blue Gate</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label for="traderFilter">Trader:</label>
-        <select id="traderFilter">
-          <option value="all">All</option>
-          <option value="shani">Shani</option>
-          <option value="celeste">Celeste</option>
-          <option value="tian_wen">Tian Wen</option>
-          <option value="lance">Lance</option>
-          <option value="apollo">Apollo</option>
-        </select>
-      </div>
       <div class="search-group">
         <input type="text" id="searchInput" placeholder="Search quests..." autocomplete="off">
       </div>
