@@ -14,7 +14,10 @@
 <header>
   <div class="header-top">
     <h1>Arc Raiders — Quest Planner</h1>
-    <button id="menuToggle" class="menu-btn" aria-label="Toggle menu">☰</button>
+    <div class="header-right">
+      <div id="userInfo" class="user-info"></div>
+      <button id="menuToggle" class="menu-btn" aria-label="Toggle menu">☰</button>
+    </div>
   </div>
   <nav id="mainNav" class="nav-bar">
     <div class="nav-row">
@@ -38,9 +41,9 @@
       <div class="search-group">
         <input type="text" id="searchInput" placeholder="Search quests..." autocomplete="off">
       </div>
-      <div id="authArea" class="auth-area"></div>
       <button id="printBtn" class="nav-btn print-btn" title="Printable checklist">🖨 Print</button>
       <button id="settingsBtn" class="nav-btn" title="Settings">⚙</button>
+      <div id="authArea" class="auth-area"></div>
     </div>
   </nav>
 </header>

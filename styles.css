@@ -47,6 +47,15 @@ header {
   color: var(--accent);
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-info { display: none; align-items: center; }
+.user-info:not(:empty) { display: flex; }
+
 .menu-btn {
   display: none;
   background: none;
@@ -56,6 +65,8 @@ header {
   cursor: pointer;
   padding: 4px 8px;
 }
+
+#settingsBtn { font-size: 1.15rem; line-height: 1; }
 
 .nav-bar {
   padding: 0 16px 10px;
