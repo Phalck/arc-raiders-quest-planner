@@ -53,7 +53,6 @@
   let completedQuests = {};
   let childrenOf = {};
   let questDepths = {};
-  let panelHidden = false;
   let longPressTimer = null;
 
   const networkEl = document.getElementById('mynetwork');
@@ -63,8 +62,6 @@
   const traderFilter = document.getElementById('traderFilter');
   const searchInput = document.getElementById('searchInput');
   const printBtn = document.getElementById('printBtn');
-  const menuToggle = document.getElementById('menuToggle');
-  const mainNav = document.getElementById('mainNav');
 
   function lget() {
     try { return JSON.parse(localStorage.getItem('ar_completed_quests')) || {}; }
@@ -117,7 +114,6 @@
       applyMode('full');
       applyFilters();
     }
-    panelHidden = false;
     if (typeof renderTrackedPath === 'function') renderTrackedPath();
   };
 
@@ -552,25 +548,15 @@
   }
 
   function renderTrackedPath() {
-    const sidebar = document.getElementById('pathSidebar');
     const content = document.getElementById('psbContent');
     const title = document.getElementById('psbQuestName');
-    const toggleBtn = document.getElementById('pathToggleBtn');
 
     const tracked = allQuests.filter(q => completedQuests[q.id] === 'tracked');
     const hasTracked = tracked.length > 0;
 
-    toggleBtn.classList.toggle('hidden', !hasTracked);
-    toggleBtn.classList.toggle('active', hasTracked && !panelHidden);
-
     if (!hasTracked) {
-      sidebar.classList.add('hidden');
-      panelHidden = false;
-      return;
-    }
-
-    if (panelHidden) {
-      sidebar.classList.add('hidden');
+      content.innerHTML = '<div class="psb-empty">Track a quest to see its path</div>';
+      title.textContent = '';
       return;
     }
 
@@ -617,7 +603,6 @@
         + '</div></div>';
     }
     content.innerHTML = html;
-    sidebar.classList.remove('hidden');
 
     for (const el of content.querySelectorAll('.psb-item')) {
       el.addEventListener('click', function () {
@@ -755,7 +740,6 @@
     currentPathType = null;
     document.getElementById('coinSelect').value = '';
     document.getElementById('blueprintSelect').value = '';
-    panelHidden = false;
     renderTrackedPath();
     applyMode('full');
   }
@@ -811,21 +795,6 @@
     });
 
     printBtn.addEventListener('click', generatePrint);
-
-    menuToggle.addEventListener('click', function () {
-      mainNav.classList.toggle('collapsed');
-    });
-
-    document.getElementById('psbCloseBtn').addEventListener('click', function () {
-      panelHidden = true;
-      document.getElementById('pathSidebar').classList.add('hidden');
-      document.getElementById('pathToggleBtn').classList.remove('active');
-    });
-
-    document.getElementById('pathToggleBtn').addEventListener('click', function () {
-      panelHidden = !panelHidden;
-      renderTrackedPath();
-    });
 
     document.getElementById('coinSelect').addEventListener('change', function () {
       document.querySelector('.nav-btn[data-mode="full"]').classList.remove('active');

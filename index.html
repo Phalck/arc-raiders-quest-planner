@@ -11,12 +11,11 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
+<aside class="left-panel">
   <div class="header-top">
     <h1>Arc Raiders — Quest Planner</h1>
     <div class="header-right">
       <div id="userInfo" class="user-info"></div>
-      <button id="menuToggle" class="menu-btn" aria-label="Toggle menu">☰</button>
     </div>
   </div>
   <nav id="mainNav" class="nav-bar">
@@ -24,15 +23,11 @@
       <button class="nav-btn active" data-mode="full">Full Tree</button>
       <div class="filter-group">
         <label for="coinSelect">Coins:</label>
-        <select id="coinSelect">
-          <option value="">—</option>
-        </select>
+        <select id="coinSelect"><option value="">—</option></select>
       </div>
       <div class="filter-group">
         <label for="blueprintSelect">Blueprints:</label>
-        <select id="blueprintSelect">
-          <option value="">—</option>
-        </select>
+        <select id="blueprintSelect"><option value="">—</option></select>
       </div>
     </div>
     <div class="nav-row">
@@ -62,7 +57,6 @@
       <div class="search-group">
         <input type="text" id="searchInput" placeholder="Search quests..." autocomplete="off">
       </div>
-      <button id="pathToggleBtn" class="nav-btn path-toggle-btn hidden" title="Toggle path checklist">📋 Path</button>
       <div class="nav-right">
         <button id="printBtn" class="nav-btn print-btn" title="Printable checklist">🖨 Print</button>
         <button id="settingsBtn" class="nav-btn" title="Settings">⚙</button>
@@ -70,7 +64,13 @@
       </div>
     </div>
   </nav>
-</header>
+  <div class="tracker-panel">
+    <div class="psb-header">
+      <h3>Path: <span id="psbQuestName"></span></h3>
+    </div>
+    <div id="psbContent" class="psb-content"></div>
+  </div>
+</aside>
 
 <div id="authModal" class="modal hidden">
   <div class="modal-overlay"></div>
@@ -103,13 +103,6 @@
   </div>
   <div id="networkArea" class="network-area">
     <div id="mynetwork" class="network-container"></div>
-    <aside id="pathSidebar" class="path-sidebar hidden">
-      <div class="psb-header">
-        <h3><span id="psbQuestName"></span></h3>
-        <button id="psbCloseBtn" class="psb-close-btn">✕</button>
-      </div>
-      <div id="psbContent" class="psb-content"></div>
-    </aside>
   </div>
   <div id="questDetail" class="quest-detail hidden"></div>
 </main>

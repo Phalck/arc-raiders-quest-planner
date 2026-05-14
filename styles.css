@@ -23,15 +23,17 @@ body {
   color: var(--fg);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-header {
+.left-panel {
+  width: 300px;
+  flex-shrink: 0;
   background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .header-top {
@@ -55,16 +57,6 @@ header {
 
 .user-info { display: none; align-items: center; }
 .user-info:not(:empty) { display: flex; }
-
-.menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--fg);
-  font-size: 1.3rem;
-  cursor: pointer;
-  padding: 4px 8px;
-}
 
 .nav-right .nav-btn { height: 31px; display: inline-flex; align-items: center; }
 #settingsBtn { font-size: 1.5rem; line-height: 1; padding: 0 10px; }
@@ -162,11 +154,18 @@ header {
 .legend-item .swatch.state-tracked { background: #d7a83e; border-radius: 0; width: 8px; height: 8px; }
 .legend-item .swatch.state-done { background: #4a8a4a; border-radius: 0; width: 8px; height: 8px; }
 
-.network-area {
-  position: relative;
-  height: calc(100vh - 190px);
-  min-height: 500px;
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  min-width: 0;
+}
+
+.network-area {
+  flex: 1;
+  overflow: hidden;
+  min-height: 300px;
 }
 
 .network-container {
@@ -174,53 +173,35 @@ header {
   height: 100%;
 }
 
-.path-sidebar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 280px;
-  background: var(--bg2);
-  border-left: 1px solid var(--border);
+.tracker-panel {
+  flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  z-index: 10;
+  border-top: 1px solid var(--border);
 }
-.path-sidebar.hidden { display: none; }
 
 .psb-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 12px 12px 0;
-  gap: 8px;
-  margin-bottom: 6px;
+  padding: 10px 12px 4px;
 }
 
 .psb-header h3 {
-  font-size: 0.85rem;
-  color: var(--fg);
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.psb-close-btn {
-  background: none;
-  border: none;
+  font-size: 0.8rem;
   color: var(--fg2);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  flex-shrink: 0;
+  font-weight: 600;
 }
-.psb-close-btn:hover { color: var(--fg); background: var(--bg); }
 
 .psb-content {
   flex: 1;
-  overflow-y: auto;
-  padding: 0 12px 12px;
+  padding: 4px 12px 12px;
+}
+
+.psb-empty {
+  color: var(--fg2);
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 20px 8px;
+  line-height: 1.4;
 }
 
 .psb-item {
@@ -273,11 +254,6 @@ header {
   color: var(--fg2);
   font-size: 0.75rem;
   margin-top: 1px;
-}
-
-.path-toggle-btn.active {
-  background: var(--accent);
-  color: var(--bg);
 }
 
 /* Quest detail panel */
@@ -336,7 +312,7 @@ header {
 
 @media print {
   body, html { background: white; color: black; font-size: 11pt; }
-  header, #mynetwork, .legend, #questDetail, .loading, .menu-btn, #pathSidebar, #networkArea { display: none !important; }
+  .left-panel, #mynetwork, .legend, #questDetail, .loading, #networkArea { display: none !important; }
   .print-view {
     display: block !important;
     position: static;
@@ -394,14 +370,12 @@ header {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .menu-btn { display: block; }
-  .nav-bar.collapsed .nav-row:not(:first-child) { display: none; }
+  body { flex-direction: column; }
+  .left-panel { width: 100%; max-height: 40vh; border-right: none; border-bottom: 1px solid var(--border); }
   .nav-row { gap: 4px; }
   .nav-btn { font-size: 0.72rem; padding: 5px 8px; }
   #searchInput { width: 120px; }
-  .network-area { height: calc(100vh - 180px); min-height: 350px; }
-  .path-sidebar { display: none !important; }
-  .path-toggle-btn { display: none !important; }
+  .tracker-panel { max-height: 150px; }
   .header-top h1 { font-size: 0.95rem; }
   .legend { gap: 6px; font-size: 0.7rem; }
 }
