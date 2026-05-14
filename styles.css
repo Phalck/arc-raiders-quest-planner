@@ -124,7 +124,7 @@ header {
 
 #searchInput::placeholder { color: var(--fg2); }
 
-.print-btn { margin-left: auto; }
+.nav-right { display: flex; align-items: center; gap: 6px; margin-left: auto; }
 
 .loading {
   text-align: center;
